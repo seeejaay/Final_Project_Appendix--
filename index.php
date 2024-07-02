@@ -51,13 +51,15 @@
                         </div>
                 </div>
                 <section class="about">
-                        <div class="image-left">
-                                <img class="img-left" src="./assets/images/background.webp" alt="Hotel Image">
-                        </div>
-                        <div class="about-text">
-                                <h1>Welcome to Timeless Elegance Hotel</h1>
-                                <p>Welcome to Timeless Elegance Hotel. We offer luxury accommodations and exceptional service. Whether for business or pleasure, choose Appendix Colonial Hotel for your stay.</p>
-                                <button class="btn-custom">Learn More</button>
+                        <div class="about-info">
+                                <div class="image-left">
+                                        <img class="img-left" src="./assets/images/background.webp" alt="Hotel Image">
+                                </div>
+                                <div class="about-text">
+                                        <h1>The Timeless Elegance Hotel</h1>
+                                        <p>Welcome to Timeless Elegance Hotel. We offer luxury accommodations and exceptional service. Whether for business or pleasure, choose Appendix Colonial Hotel for your stay.</p>
+                                        <button class="btn-custom">Learn More</button>
+                                </div>
                         </div>
                 </section>
 
