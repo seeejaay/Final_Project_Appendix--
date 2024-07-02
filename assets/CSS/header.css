@@ -5,16 +5,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+ 
     transition: all 0.3s;
 }
 
 nav{
+    font-family: "Poppins", sans-serif;
     display: flex;
     justify-content: space-between !important;
     align-items: center;
     padding: 3px 40px 3px 40px !important;
     background-color: #1C1610 !important;
+    z-index: 9999 !important;
+   
     
     li > a{
         color: #a7a7a7 !important;

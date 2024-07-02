@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home | Appendix Colonial Hotel</title>
-        <link href="./assets/images/hotel_group_logo copy.webp">
+        <link rel="icon" href="./assets/images/logo_bg.png">
 
         <link rel="stylesheet" href="./assets/CSS/index.css">
         <link rel="stylesheet" href="./assets/CSS/header.css">
@@ -16,7 +16,7 @@
 
 <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark ">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
                 <a class="navbar-brand" href="#">
                         <img class="img-size" src="./assets/images/logo_bg.png" alt="">
                 </a>
@@ -39,12 +39,31 @@
                                         <a class="nav-link" href="#">Contact</a>
                                 </li>
                         </ul>
+
                 </div>
+
         </nav>
         <main class="container-wrapper">
-                <div class="logo">
-                        <img class="image-size" src="./assets/images/logo_bg.png" alt="Elegance Hotel">
+                <div class="top">
+                        <div class="logo">
+                                <img class="image-size" src="./assets/images/logo_bg.png" alt="Elegance Hotel">
+
+                        </div>
                 </div>
+                <section class="about">
+                        <div class="about-info">
+                                <div class="image-left">
+                                        <img class="img-left" src="./assets/images/background.webp" alt="Hotel Image">
+                                </div>
+                                <div class="about-text">
+                                        <h1>The Timeless Elegance Hotel</h1>
+                                        <p>Welcome to Timeless Elegance Hotel. We offer luxury accommodations and exceptional service. Whether for business or pleasure, choose Appendix Colonial Hotel for your stay.</p>
+                                        <button class="btn-custom">Learn More</button>
+                                </div>
+                        </div>
+                </section>
+
+
         </main>
 
 
@@ -52,7 +71,7 @@
 </body>
 
 <!-- Bootstrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <!-- JS for Index -->
 <script src="./assets/JS/index.js"></script>
