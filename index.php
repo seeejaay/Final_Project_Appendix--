@@ -4,7 +4,7 @@
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home | Appendix Colonial Hotel</title>
+        <title>Home | Timeless Elegance</title>
         <link rel="icon" href="./assets/images/logo_bg.png">
 
         <link rel="stylesheet" href="./assets/CSS/index.css">
@@ -17,9 +17,9 @@
 <body>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
-                <a class="navbar-brand" href="#">
-                        <img class="img-size" src="./assets/images/logo_bg.png" alt="">
-                </a>
+                <div class="navbar-brand" href="#">
+                        <a href="index.php"><img class="img-size" src="./assets/images/logo_bg.png" alt=""></a>
+                </div>
                 <button class="navbar-toggler toggleNav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="fas fa-bars"></span>
                 </button>
@@ -58,7 +58,7 @@
                                 <div class="about-text">
                                         <h1>The Timeless Elegance Hotel</h1>
                                         <p>Welcome to Timeless Elegance Hotel. We offer luxury accommodations and exceptional service. Whether for business or pleasure, choose Appendix Colonial Hotel for your stay.</p>
-                                        <button class="btn-custom">Learn More</button>
+                                        <button class="btn-custom">Book Now</button>
                                 </div>
                         </div>
                 </section>
@@ -66,7 +66,29 @@
 
         </main>
 
-
+        <footer class="footer">
+                <div class="container">
+                        <div class="row">
+                                <div class="col-md-4">
+                                        <img class="footer-logo" src="./assets/images/logo_bg.png" alt="Logo">
+                                </div>
+                                <div class="col-md-4">
+                                        <h3>Contact Us</h3>
+                                        <p>123 Main Street, City, Country</p>
+                                        <p>Email: info@example.com</p>
+                                        <p>Phone: +1 123 456 7890</p>
+                                </div>
+                                <div class="col-md-4">
+                                        <h3>Follow Us</h3>
+                                        <ul class="social-media">
+                                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        </ul>
+                                </div>
+                        </div>
+                </div>
+        </footer>
 
 </body>
 
