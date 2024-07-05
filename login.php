@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt->bind_result($id, $db_username, $db_password, $admin);
 
-        // Fetch the value
+    // Fetch the value
         if ($stmt->fetch()) {
                 if ($password === $db_password) {
                 $_SESSION["loggedin"] = true;
@@ -49,5 +49,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt->close();
         $conn->close();
-        }
+}
 ?>
