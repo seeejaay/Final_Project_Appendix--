@@ -33,3 +33,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <!-- Signup Modal -->
+
+<div class="modal-content">
+    <div class="top_container">
+        <h1>Signup</h1>
+        <div class="close">&times;</div>
+    </div>
+    <form id="signupForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <button type="submit" class="btn-signup">Signup</button>
+        <?php if (!empty($signup_err)) : ?>
+            <div class="error"><?php echo $signup_err; ?></div>
+        <?php endif; ?>
+    </form>
+    <p>Already have an account? <a href="#" id="showLogin" class="signup-link">Login here</a></p>
+</div>
