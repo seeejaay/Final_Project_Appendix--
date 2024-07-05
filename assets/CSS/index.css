@@ -9,8 +9,6 @@
     --offwhite: #f8f6e7;
 }
 
-
-
 .container-wrapper{
     width: 100%;
     display: flex;
@@ -69,7 +67,7 @@
     color: #fff ;
     background: var(--browndark) ;
     &:hover{
-       transform: scale(1.1);
+        transform: scale(1.1);
     }
 }
 
