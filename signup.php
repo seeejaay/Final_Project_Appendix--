@@ -20,7 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sss", $username, $password, $email);
 
     if ($stmt->execute()) {
-        echo "New record created successfully";
+        echo '<script>';
+        echo 'alert("Signup successful! Please login to continue.");';
+        echo '</script>';
     } else {
         echo "Error: " . $stmt->error;
     }
