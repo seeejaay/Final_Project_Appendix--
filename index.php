@@ -7,17 +7,17 @@ include 'signup.php';
 <html lang="en">
 
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home | Timeless Elegance</title>
-        <link rel="icon" href="./assets/images/logo_bg.png">
-        <link rel="stylesheet" href="./assets/CSS/index.css">
-        <link rel="stylesheet" href="./assets/CSS/header.css">
-        <!-- Bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <style>
-                .modal {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Timeless Elegance</title>
+    <link rel="icon" href="./assets/images/logo_bg.png">
+    <link rel="stylesheet" href="./assets/CSS/index.css">
+    <link rel="stylesheet" href="./assets/CSS/header.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .modal {
                 display: none;
                 position: fixed;
                 z-index: 1;
@@ -258,73 +258,46 @@ include 'signup.php';
         <!-- JS for Headers -->
         <script src="./assets/JS/header.js"></script>
 
-<script>
-        var loginModal = document.getElementById("loginModal");
-        var signupModal = document.getElementById("signupModal");
-        var bookNowBtn = document.getElementById("bookNowBtn");
-        var spanClose = document.getElementsByClassName("close");
-        var showSignup = document.getElementById("showSignup");
-        var showLogin = document.getElementById("showLogin");
+        <script>
+                var loginModal = document.getElementById("loginModal");
+                var signupModal = document.getElementById("signupModal");
+                var bookNowBtn = document.getElementById("bookNowBtn");
+                var spanClose = document.getElementsByClassName("close");
+                var showSignup = document.getElementById("showSignup");
+                var showLogin = document.getElementById("showLogin");
 
-        bookNowBtn.onclick = function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                bookNowBtn.onclick = function() {
                 loginModal.style.display = "block";
-        }
-
-        for (var i = 0; i < spanClose.length; i++) {
-                spanClose[i].onclick = function() {
-                loginModal.style.display = "none";
-                signupModal.style.display = "none";
                 }
-        }
 
-        window.onclick = function(event) {
+                for (var i = 0; i < spanClose.length; i++) {
+                spanClose[i].onclick = function() {
+                        loginModal.style.display = "none";
+                        signupModal.style.display = "none";
+                }
+                }
+
+                window.onclick = function(event) {
                 if (event.target == loginModal) {
-                loginModal.style.display = "none";
+                        loginModal.style.display = "none";
                 }
                 if (event.target == signupModal) {
-                signupModal.style.display = "none";
+                        signupModal.style.display = "none";
                 }
-        }
+                }
 
-        showSignup.onclick = function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                showSignup.onclick = function(event) {
+                event.preventDefault();
                 loginModal.style.display = "none";
                 signupModal.style.display = "block";
-        }
+                }
 
-        showLogin.onclick = function(event) {
-                event.preventDefault(); // Prevent default link behavior
+                showLogin.onclick = function(event) {
+                event.preventDefault();
                 signupModal.style.display = "none";
                 loginModal.style.display = "block";
-        }
-        var signupForm = document.getElementById("signupForm");
-        signupForm.addEventListener("submit", function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                var formData = new FormData(signupForm);
-                fetch(signupForm.action, {
-                method: signupForm.method,
-                body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                if (data.success) {
-                        showToast("Signup successful!");
-                        loginModal.style.display = "block"; 
-                        signupModal.style.display = "none";
-                        signupForm.reset();
-                } else {
-                        showToast("Signup failed. Please try again.");
                 }
-                })
-                .catch(error => {
-                console.error('Error:', error);
-                showToast("Signup failed. Please try again.");
-                });
-        });
-</script>
-
+        </script>
 </body>
 
 </html>
