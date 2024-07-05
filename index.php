@@ -86,7 +86,7 @@ include_once 'login.php';
                 }
 
                 .signup-link {
-                        color: blue;
+                        color: var(--browndark);
                         text-decoration: none;
                 }
 
