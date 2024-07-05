@@ -58,7 +58,7 @@
                                 <div class="about-text">
                                         <h1>The Timeless Elegance Hotel</h1>
                                         <p>Welcome to Timeless Elegance Hotel. We offer luxury accommodations and exceptional service. Whether for business or pleasure, choose Appendix Colonial Hotel for your stay.</p>
-                                        <button class="btn-custom">Book Now</button>
+                                        <button class="btn-custom"><a href="login.php">Book Now</a></button>
                                 </div>
                         </div>
                 </section>
