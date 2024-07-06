@@ -108,7 +108,7 @@
     flex: 1 1 calc(25% - 20px); /* Adjusts for gap */
     max-width: calc(25% - 20px); /* Adjusts for gap */
     box-sizing: border-box;
-    h1{
+    h3{
         text-align: center;
     }
 

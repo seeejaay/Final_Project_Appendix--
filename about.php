@@ -49,21 +49,25 @@
                 </div>
                 <section class="about-serv"><h1>Our Services</h1></section>
                 <section class="about">
-                        <div class="about-info">
+                        <div class="about-info text-center">
                                 <div class="col-md-3">
-                                        <h1>Luxury lodgings</h1>
+                                        <i class="fa-solid fa-hotel fa-5x mb-3"></i>
+                                        <h3>Luxury lodgings</h3>
                                         <p>At Timeless Elegance Hotel, we provide a range of luxurious rooms designed to offer comfort and elegance. Each room is meticulously decorated with sophisticated furnishings and equipped with modern amenities to ensure a pleasant stay.</p>
                                 </div>
                                 <div class="col-md-3">
-                                        <h1>Exceptional Service</h1>
+                                        <i class="fa-solid fa-bell-concierge fa-5x mb-3"></i>
+                                        <h3>Exceptional Service</h3>
                                         <p>Our dedicated team is committed to providing exceptional service to make your stay memorable. From the moment you arrive, our staff is here to cater to your every need, ensuring a seamless and enjoyable experience.</p>
                                 </div>
                                 <div class="col-md-3">
-                                        <h1>Effortless Reservations</h1>
+                                        <i class="fa-regular fa-calendar-days fa-5x mb-3"></i>
+                                        <h3>Effortless Reservations</h3>
                                         <p>Booking a room at Timeless Elegance Hotel is simple and convenient. Our user-friendly reservation system allows you to easily check availability, choose your preferred room, and secure your booking with just a few clicks.</p>
                                 </div>
                                 <div class="col-md-3">
-                                        <h1>Timeless Experience</h1>
+                                        <i class="fa-solid fa-clock fa-5x mb-3"></i>
+                                        <h3>Timeless Experience</h3>
                                         <p>Experience the timeless elegance and unparalleled comfort at our hotel. From our beautifully appointed rooms to our attentive service, every detail is crafted to ensure a luxurious and unforgettable stay.</p>
                                 </div>
                         </div>
