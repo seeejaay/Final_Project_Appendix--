@@ -105,7 +105,7 @@ include 'login.php';
 
                 <!-- JS for Modal -->
                 <script src="./assets/JS/modal.js"></script>
-                <script src="js/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
+                <script src="js/placeholders.min.js"></script>
 
         
 

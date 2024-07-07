@@ -1,3 +1,4 @@
+
 /* -------------------------------- 
 
 Primary style
@@ -20,7 +21,7 @@ background-color: white;
 }
 
 a {
-color: #2f889a;
+color: #2e2816;
 text-decoration: none;
 }
 
@@ -163,7 +164,7 @@ color: #FFF;
     border: 1px solid rgba(255, 255, 255, 0.6);
 }
 .cd-main-nav__item.cd-main-nav__item--signup {
-    background: #2f889a;
+    background: #2e2816;
 }
 }
 
@@ -194,7 +195,6 @@ opacity: 1;
 }
 
 .cd-signin-modal__container {
-
 position: relative;
 width: 90%;
 max-width: 600px;
@@ -245,11 +245,13 @@ height: 50px;
 line-height: 50px;
 background: #d2d8d8;
 color: #809191;
+text-decoration: none;
 }
 
 .cd-signin-modal__switcher a.cd-selected {
-background: #FFF;
-color: #505260;
+background: #2e2816;
+color: #d2d8d8;
+text-decoration: none;
 }
 
 @media only screen and (min-width: 600px) {
@@ -350,7 +352,7 @@ border: 1px solid #d76666;
 .cd-signin-modal__input[type=submit] {
 padding: 16px 0;
 cursor: pointer;
-background: #2f889a;
+background: var(--browndark);
 color: #FFF;
 font-weight: bold;
 border: none;
@@ -362,7 +364,7 @@ border: none;
 }
 
 .cd-signin-modal__input[type=submit]:hover, .cd-signin-modal__input[type=submit]:focus {
-background: #3599ae;
+background: #2e2816;
 outline: none;
 }
 
@@ -607,19 +609,4 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-}
-
-
-#login-error-message,#signup-error-message {
-    position: absolute;
-    max-width: 400px;
-    width: 100%;
-    left: 50%;
-    padding: 5px;
-    transform: translate(-50%);
-    border: 0; /* Red border */
-    background-color: transparent; /* Light red background */
-    color: #f00; /* Red text */
-    font-size: 14px; /* Font size */
-    border-radius: 5px; /* Rounded corners */
 }
