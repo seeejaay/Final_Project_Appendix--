@@ -174,6 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div> <!-- cd-signin-modal -->
 
 <script>
+        //AJAX for showing error messages
         $(document).ready(function() {
                 $('#login-form').submit(function(e) {
                         e.preventDefault(); // Prevent form submission
