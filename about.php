@@ -1,5 +1,12 @@
+<?php
+session_start();
+include './assets/resources/login.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,46 +15,25 @@
 
         <link rel="stylesheet" href="./assets/CSS/about.css">
         <link rel="stylesheet" href="./assets/CSS/header.css">
+        <link rel="stylesheet" href="./assets/CSS/modal.css">
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-        <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
-                <div class="navbar-brand" href="#">
-                        <a href="index.php"><img class="img-size" src="./assets/images/logo_bg.png" alt=""></a>
-                </div>
-                <button class="navbar-toggler toggleNav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="fas fa-bars"></span>
-                </button>
+        <!-- Navbar FOR ALL-->
+        <?php include './assets/resources/header.php'; ?>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                        <a class="nav-link" href="index.php">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">About</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">Services</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">Contact</a>
-                                </li>
-                        </ul>
-
-                </div>
-
-        </nav>
         <main class="container-wrapper">
                 <div class="top">
                         <div class="title">
-                            <h1>About Us</h1>
+                                <h1>About Us</h1>
                         </div>
                 </div>
-                <section class="about-serv"><h1>Our Services</h1></section>
+                <section class="about-serv">
+                        <h1>Our Services</h1>
+                </section>
                 <section class="about">
                         <div class="about-info text-center">
                                 <div class="col-md-3">
@@ -108,5 +94,29 @@
 
 <!-- JS for Headers -->
 <script src="./assets/JS/header.js"></script>
+
+<script>
+        $(document).ready(function() {
+                $('#bookNowBtn').click(function() {
+                        // Check if user is logged in
+                        if (<?php echo isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true ? 'true' : 'false'; ?>) {
+                                window.location.href = './client/booking.php'; // Redirect to booking.php
+                        } else {
+                                $('.js-signin-modal-trigger [data-signin="login"]').click(); // Open login modal if not logged in
+                        }
+                });
+
+
+                $('#bookingBtn').click(function() {
+                        // Check if user is logged in
+                        if (<?php echo isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true ? 'true' : 'false'; ?>) {
+                                window.location.href = './client/booking.php'; // Redirect to booking.php
+                        } else {
+                                $('.js-signin-modal-trigger [data-signin="login"]').click(); // Open login modal if not logged in
+                        }
+                });
+        });
+</script>
+
 
 </html>

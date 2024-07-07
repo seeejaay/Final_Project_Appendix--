@@ -24,9 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $_SESSION["username"] = $db_username;
 
                                 if ($admin) {
-                                        echo json_encode(array("redirect" => "admin.php"));
+                                        echo json_encode(array("redirect" => "./admin/admin.php"));
                                 } else {
-                                        echo json_encode(array("redirect" => "booking.php"));
+                                        echo json_encode(array("redirect" => "./client/booking.php"));
                                 }
                         } else {
                                 $login_fail = true;
