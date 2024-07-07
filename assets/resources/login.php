@@ -24,9 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $_SESSION["username"] = $db_username;
 
                                 if ($admin) {
-                                        echo json_encode(array("redirect" => "admin.php"));
+                                        echo json_encode(array("redirect" => "./admin/admin.php"));
                                 } else {
-                                        echo json_encode(array("redirect" => "booking.php"));
+                                        echo json_encode(array("redirect" => "./client/booking.php"));
                                 }
                         } else {
                                 $login_fail = true;
@@ -41,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $conn->close();
         } elseif (isset($_POST['action']) && $_POST['action'] == 'signup') {
                 // Signup logic
-                $name = $_POST['name'];
+                $fname = $_POST['fname'];
+                $lname = $_POST['lname'];
                 $username = $_POST['username'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
@@ -58,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         exit();
                 }
 
-                $stmt = $conn->prepare("INSERT INTO user_tb (name, username, email, password) VALUES (?, ?, ?, ?)");
-                $stmt->bind_param("ssss", $name, $username, $email, $password);
+                $stmt = $conn->prepare("INSERT INTO user_tb (first_name,last_name, username, email, password) VALUES (?,?, ?, ?, ?)");
+                $stmt->bind_param("sssss", $fname, $lname, $username, $email, $password);
 
                 if ($stmt->execute()) {
                         echo json_encode(array("message" => "Signup successful! You can now log in."));
@@ -120,8 +121,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <form id="signup-form" class="cd-signin-modal__form" method="post">
                                 <input type="hidden" name="action" value="signup">
                                 <p class="cd-signin-modal__fieldset">
-                                        <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-name">Name</label>
-                                        <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-name" type="text" name="name" placeholder="Name" required>
+                                        <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-fname">First Name</label>
+                                        <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-fname" type="text" name="fname" placeholder="First Name" required>
+                                </p>
+                                <p class="cd-signin-modal__fieldset">
+                                        <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-lname">Last Name</label>
+                                        <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-lname" type="text" name="lname" placeholder="Last Name" required>
                                 </p>
                                 <p class="cd-signin-modal__fieldset">
                                         <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
