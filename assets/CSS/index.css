@@ -50,6 +50,7 @@
     display: grid;
     place-items: center;
     gap: 10px;
+    animation: logoIn 2s ease-in;
 }
 
 .image-size {
@@ -173,4 +174,17 @@
   align-items: center;
   margin-bottom: 20px;
   padding: 0;
+}
+
+
+@keyframes logoIn {
+    0% {
+        opacity: 0;
+       
+        
+    }
+    100% {
+        opacity: 1;
+        
+    }
 }

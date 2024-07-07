@@ -22,7 +22,7 @@ nav{
     li > a{
         color: #a7a7a7 !important;
         text-align: center ;
-        font-size: 1.2rem !important;
+        font-size: 1.3rem !important;
         
         &:hover{
             color: #e4dfdf !important;
