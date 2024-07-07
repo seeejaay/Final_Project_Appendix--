@@ -1,0 +1,28 @@
+.social-media {
+    display: flex !important;
+    list-style: none !important; 
+    padding: 0;
+    gap: 20px;
+}
+
+.footer{
+    padding: 20px;
+    background: var(--darkbrown) !important;
+    color: var(--offwhite);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    .footer-logo{
+        width: 200px;
+    }
+
+    .fab{
+        font-size: 1.5rem !important;
+    }
+}
+
+.col-md-4{
+    display: flex!important;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
