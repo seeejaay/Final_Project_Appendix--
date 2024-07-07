@@ -191,3 +191,13 @@
     }
 }
 
+#login-error-message, #signup-error-message{
+  position: absolute;
+  width: 100% !important;
+  max-width: inherit !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0;
+}

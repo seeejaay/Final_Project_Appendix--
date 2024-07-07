@@ -95,21 +95,33 @@ include 'login.php';
 
 
         <!-- Bootstrap JS-->
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-                <!-- JS for Index -->
-                <script src="./assets/JS/index.js"></script>
+        <!-- JS for Index -->
+        <script src="./assets/JS/index.js"></script>
 
-                <!-- JS for Headers -->
-                <script src="./assets/JS/header.js"></script>
+        <!-- JS for Headers -->
+        <script src="./assets/JS/header.js"></script>
 
-                <!-- JS for Modal -->
-                <script src="./assets/JS/modal.js"></script>
-                <script src="js/placeholders.min.js"></script>
+        <!-- JS for Modal -->
+        <script src="./assets/JS/modal.js"></script>
+        <script src="js/placeholders.min.js"></script>
 
-        
+
 
 
 </body>
 
 </html>
+
+<script>
+        const btnBookNow = document.getElementById('bookNowBtn');
+
+        btnBookNow.addEventListener('click', () => {
+                if (<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true ? 'true' : 'false'; ?>) {
+                        window.location.href = 'booking.php';
+                } else {
+                        $('.js-signin-modal-trigger [data-signin="login"]').click();
+                }
+        });
+</script>

@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute();
                 $stmt->bind_result($id, $db_username, $db_password, $admin);
                 $login_fail = false;
+                $_SESSION["loggedin"] = false;
                 if ($stmt->fetch()) {
                         if ($password === $db_password) { // In production, use password_verify($password, $db_password)
                                 $_SESSION["loggedin"] = true;
@@ -103,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="cd-signin-modal__container">
                 <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
                         <li><a href="#0" data-signin="login" data-type="login">Login</a></li>
-                        <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
+                        <li><a href="#0" data-signin="signup" data-type="signup">Create an Account</a></li>
                 </ul>
 
                 <div class="cd-signin-modal__block js-signin-modal-block" data-type="login">
@@ -112,14 +113,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <form id="login-form" class="cd-signin-modal__form" method="post">
                                 <input type="hidden" name="action" value="login">
                                 <p class="cd-signin-modal__fieldset">
-                                        <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signin-username">Username</label>
                                         <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-username" type="text" name="username" placeholder="Username" required>
                                 </p>
 
                                 <p class="cd-signin-modal__fieldset">
                                         <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password">Password</label>
                                         <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="password" name="password" placeholder="Password" required>
-                                        <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+                                        <a href="#0" class="cd-signin-modal__hide-password js-hide-password fas fa-eye-slash"></a>
                                 </p>
 
                                 <p class="cd-signin-modal__fieldset">
@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <p class="cd-signin-modal__fieldset">
                                         <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Password</label>
                                         <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="password" name="password" placeholder="Password" required>
-                                        <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+                                        <a href="#0" class="cd-signin-modal__hide-password js-hide-password fas fa-eye-slash"></a>
                                 </p>
 
                                 <p class="cd-signin-modal__fieldset">

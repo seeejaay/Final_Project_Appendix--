@@ -48,7 +48,8 @@
 	ModalSignin.prototype.togglePassword = function(target) {
 		var password = target.previousElementSibling;
 		( 'password' == password.getAttribute('type') ) ? password.setAttribute('type', 'text') : password.setAttribute('type', 'password');
-		target.textContent = ( 'Hide' == target.textContent ) ? 'Show' : 'Hide';
+		target.classList.toggle('fa-eye');
+		target.classList.toggle('fa-eye-slash');
 		putCursorAtEnd(password);
 	}
 
