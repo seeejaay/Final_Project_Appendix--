@@ -120,6 +120,11 @@
     }
 }
 
+.about-info .col-md-3 i.fa-5x.mb-3:hover {
+    transform: scale(1.2); /* Enlarge icons by 20% */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
 @media (max-width: 992px) {
     .about-info .col-md-3 {
         flex: 1 1 calc(50% - 20px);
