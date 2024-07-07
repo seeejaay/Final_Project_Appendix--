@@ -1,6 +1,5 @@
 <?php
 include 'login.php';
-
 ?>
 
 <!DOCTYPE html>
@@ -61,10 +60,10 @@ include 'login.php';
                                 <div class="image-left">
                                         <img class="img-left" src="./assets/images/background.webp" alt="Hotel Image">
                                 </div>
-                                <div class="about-text">
+                                <div class="about-text js-signin-modal-trigger">
                                         <h1>The Timeless Elegance Hotel</h1>
                                         <p>Welcome to Timeless Elegance Hotel. We offer luxury accommodations and exceptional service. Whether for business or pleasure, choose Timeless Elegance Hotel for your stay.</p>
-                                        <button id="bookNowBtn" class="btn-custom">Book Now</button>
+                                        <button id="bookNowBtn" class="btn-custom" data-signin="login">Book Now</button>
                                 </div>
                         </div>
                 </section>
@@ -95,7 +94,7 @@ include 'login.php';
         </footer>
 
 
-        < <!-- Bootstrap JS-->
+        <!-- Bootstrap JS-->
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
                 <!-- JS for Index -->
@@ -103,6 +102,12 @@ include 'login.php';
 
                 <!-- JS for Headers -->
                 <script src="./assets/JS/header.js"></script>
+
+                <!-- JS for Modal -->
+                <script src="./assets/JS/modal.js"></script>
+                <script src="js/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
+
+        
 
 
 </body>
