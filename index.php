@@ -25,7 +25,7 @@ include './assets/resources/login.php';
 </head>
 
 <body>
-        <!-- Navbar -->
+        <!-- Navbar FOR ALL-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
                 <div class="navbar-brand" href="#">
                         <a href="index.php"><img class="img-size" src="./assets/images/logo_bg.png" alt=""></a>
