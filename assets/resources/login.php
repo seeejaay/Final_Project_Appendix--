@@ -2,6 +2,7 @@
 global $login_fail;
 $login_err = '';
 $signup_err = '';
+require 'dbConfig.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['action']) && $_POST['action'] == 'login') {
@@ -9,16 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $username = $_POST['username'];
                 $password = $_POST['password'];
 
-                $servername = "localhost";
-                $db_username = "root";
-                $db_password = "";
-                $dbname = "db_hotelresv";
-
-                $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
-                if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                }
 
                 $stmt = $conn->prepare("SELECT id, username, password, admin FROM user_tb WHERE username = ?");
                 $stmt->bind_param("s", $username);
@@ -55,16 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                $servername = "localhost";
-                $db_username = "root";
-                $db_password = "";
-                $dbname = "db_hotelresv";
-
-                $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
-                if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                }
 
                 // Check if username already exists
                 $check_stmt = $conn->prepare("SELECT id FROM user_tb WHERE username = ?");
