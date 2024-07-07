@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 if ($admin) {
                                         echo json_encode(array("redirect" => "admin.php"));
                                 } else {
-                                        echo json_encode(array("redirect" => "welcome.php"));
+                                        echo json_encode(array("redirect" => "booking.php"));
                                 }
                         } else {
                                 $login_fail = true;

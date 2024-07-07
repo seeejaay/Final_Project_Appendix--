@@ -1,5 +1,7 @@
 <?php
+session_start();
 include 'login.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -115,13 +117,14 @@ include 'login.php';
 </html>
 
 <script>
-        const btnBookNow = document.getElementById('bookNowBtn');
-
-        btnBookNow.addEventListener('click', () => {
-                if (<?php echo isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true ? 'true' : 'false'; ?>) {
-                        window.location.href = 'booking.php';
-                } else {
-                        $('.js-signin-modal-trigger [data-signin="login"]').click();
-                }
+        $(document).ready(function() {
+                $('#bookNowBtn').click(function() {
+                        // Check if user is logged in
+                        if (<?php echo isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true ? 'true' : 'false'; ?>) {
+                                window.location.href = 'booking.php'; // Redirect to booking.php
+                        } else {
+                                $('.js-signin-modal-trigger [data-signin="login"]').click(); // Open login modal if not logged in
+                        }
+                });
         });
 </script>
