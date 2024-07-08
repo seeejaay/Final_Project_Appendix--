@@ -1,5 +1,6 @@
 <?php
-function genTransID($userId, $checkinDate, $roomType, $conn) {
+function genTransID($userId, $checkinDate, $roomType, $conn)
+{
     // Fetch user details
     $stmt = $conn->prepare("SELECT first_name FROM user_tb WHERE id = ?");
     $stmt->bind_param('i', $userId);
@@ -51,6 +52,6 @@ function genTransID($userId, $checkinDate, $roomType, $conn) {
     // Combine all parts to form the transaction ID
     $transactionID = "{$firstLetters}{$month}{$day}{$numericMonthYear}-{$roomTypeCode}{$formattedCount}";
 
+    //return transactionID
     return $transactionID;
 }
-?>
