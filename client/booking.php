@@ -104,13 +104,14 @@
                                     </div>
                                     <div class="modal-body">
                                         <h5>Booking Details:</h5>
+                                        <p>Transaction ID: <span id="transactID"></span></p> 
                                         <p>Check-in Date: <span id="checkInDay"></span></p>
                                         <p>Check-out Date: <span id="checkoutDay"></span></p>
                                         <p>Number of Days: <span id="numOfDays"></span></p>
                                         <p>Room Type: <span id="roomType"></span></p>
                                         <p>Mode of Payment: <span id="paymentMethod"></span></p>
                                         <p>Total Price: <span id="totalPrice"></span></p>
-
+                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" id="closeModal" data-bs-dismiss="modal">Cancel</button>

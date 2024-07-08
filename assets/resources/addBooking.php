@@ -7,6 +7,17 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: ../index.php');
     exit;
 }
+
+function generateTransactionID($firstName, $roomType) {
+    $transactID = strtoupper(substr($firstName, 0, 2)); // First two letters of the first name
+    $transactID .= strtoupper(date('M')); // Current month in three letters
+    $transactID .= date('d'); // Current day
+    $transactID .= date('my'); // Current year and month in two digits each
+    $transactID .= strtoupper($roomType); // Room type
+    $transactID .= str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT); // Random 5-digit number
+    return $transactID;
+}
+
 global $checkinDate;
 global $checkoutDate;
 global $numDays;
@@ -58,18 +69,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $roomId = $selectedRoom['room_id'];
         $pricePerNight = $selectedRoom['pricePerNight'];
         $totalPrice = $numDays * $pricePerNight;
+        
+        // Generate transaction ID
+        $userFirstName = $_SESSION['first_name'];
+        $transactionID = generateTransactionID($userFirstName, $roomType);
+
         // Update the room with booking information
         $stmt = $conn->prepare("UPDATE room_tb SET booked = 1, dateBooked = CURDATE(), checkInDate = ?, checkOutDate = ?, numOfNights = ?, bookedBy = ? WHERE room_id = ?");
         $stmt->bind_param('ssiii', $checkinDate, $checkoutDate, $numDays, $userId, $roomId);
 
         if ($stmt->execute()) {
-            // Store pricePerNight in sessionStorage
-            echo "<script>";
-            echo "sessionStorage.setItem('pricePerNight', '$pricePerNight');";
-            echo "console.log('Price per night stored in sessionStorage.');";
-            echo "alert('Booking successful!');";
-            echo "window.location.href = 'booking.php';"; // Redirect or update page as needed
-            echo "</script>";
+            // Store booking details in transaction_tb
+            $transactionType = $paymentMethod;
+            $transactionAmount = $totalPrice;
+            $transactionDate = date('Y-m-d');
+
+            $stmt = $conn->prepare("INSERT INTO transaction_tb (transact_id, user_id, transaction_type, transaction_amount, transaction_date) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param('sisss', $transactionID, $userId, $transactionType, $transactionAmount, $transactionDate);
+
+            if ($stmt->execute()) {
+                echo "<script>";
+                echo "alert('Booking successful! Transaction ID: $transactionID');";
+                echo "window.location.href = 'booking.php';"; // Redirect or update page as needed
+                echo "</script>";
+            } else {
+                echo "<script>";
+                echo "alert('Error: " . $stmt->error . "');";
+                echo "window.location.href = 'booking.php';";
+                echo "</script>";
+            }
         } else {
             echo "<script>";
             echo "alert('Error: " . $stmt->error . "');";
@@ -87,3 +115,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
     $conn->close();
 }
+?>
