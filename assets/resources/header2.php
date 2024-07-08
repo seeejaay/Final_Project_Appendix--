@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
     <div class="navbar-brand" href="#">
-        <a href="index.php"><img class="img-size" src="../assets/images/logo_bg.png" alt=""></a>
+        <a href="../index.php"><img class="img-size" src="../assets/images/logo_bg.png" alt=""></a>
 
     </div>
     <button class="navbar-toggler toggleNav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link" href="../index.php">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../about.php">About</a>
