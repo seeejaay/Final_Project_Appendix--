@@ -2,11 +2,13 @@
 
 session_start();
 include 'dbConfig.php'; // Include database connection
+include 'genTransID.php'; // Include the transaction ID generation script
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: ../index.php');
     exit;
 }
+
 global $checkinDate;
 global $checkoutDate;
 global $numDays;
@@ -58,18 +60,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $roomId = $selectedRoom['room_id'];
         $pricePerNight = $selectedRoom['pricePerNight'];
         $totalPrice = $numDays * $pricePerNight;
+
+        // Generate the transaction ID
+        $transactionID = genTransID($userId, $checkinDate, $roomType, $conn);
+
         // Update the room with booking information
         $stmt = $conn->prepare("UPDATE room_tb SET booked = 1, dateBooked = CURDATE(), checkInDate = ?, checkOutDate = ?, numOfNights = ?, bookedBy = ? WHERE room_id = ?");
         $stmt->bind_param('ssiii', $checkinDate, $checkoutDate, $numDays, $userId, $roomId);
 
         if ($stmt->execute()) {
-            // Store pricePerNight in sessionStorage
-            echo "<script>";
-            echo "sessionStorage.setItem('pricePerNight', '$pricePerNight');";
-            echo "console.log('Price per night stored in sessionStorage.');";
-            echo "alert('Booking successful!');";
-            echo "window.location.href = 'booking.php';"; // Redirect or update page as needed
-            echo "</script>";
+            // Store booking details in transaction_tb
+            $transactionType = $paymentMethod;
+            $transactionAmount = $totalPrice;
+            $transactionDate = date('Y-m-d');
+
+            $stmt = $conn->prepare("INSERT INTO transaction_tb (transact_id, user_id, room_id, transaction_type, transaction_amount, transaction_date) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param('siisss', $transactionID, $userId, $roomId, $transactionType, $transactionAmount, $transactionDate);
+
+            if ($stmt->execute()) {
+                // Booking successful, show the success modal with transaction ID
+                echo "<script>";
+                echo "window.onload = function() {";
+                echo "showSuccessModal('{$transactionID}');";
+                echo "};";
+                echo "</script>";
+            } else {
+                echo "<script>";
+                echo "alert('Error: " . $stmt->error . "');";
+                echo "window.location.href = 'booking.php';";
+                echo "</script>";
+            }
         } else {
             echo "<script>";
             echo "alert('Error: " . $stmt->error . "');";
@@ -87,3 +107,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
     $conn->close();
 }
+?>

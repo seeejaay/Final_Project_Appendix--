@@ -111,7 +111,6 @@
                                         <p>Room Type: <span id="roomType"></span></p>
                                         <p>Mode of Payment: <span id="paymentMethod"></span></p>
                                         <p>Total Price: <span id="totalPrice"></span></p>
-
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" id="closeModal" data-bs-dismiss="modal">Cancel</button>
@@ -121,6 +120,23 @@
                             </div>
                         </div>
 
+                        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="successModalLabel">Booking Success</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Your booking has been successfully completed!</p>
+                                        <p>Transaction ID: <span id="transactionID"></span></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="successOkButton">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Confirmation Modal -->
                     </form>
@@ -130,27 +146,27 @@
     </main>
 
     <footer class="footer">
-                <div class="container">
-                        <div class="row">
-                                <div class="col-md-4">
-                                        <img class="footer-logo" src="../assets/images/logo_bg.png" alt="Logo">
-                                </div>
-                                <div class="col-md-4">
-                                        <h3>Contact Us</h3>
-                                        <p>123 Main Street, City, Country</p>
-                                        <p>Email: info@example.com</p>
-                                        <p>Phone: +1 123 456 7890</p>
-                                </div>
-                                <div class="col-md-4">
-                                        <h3>Follow Us</h3>
-                                        <ul class="social-media">
-                                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        </ul>
-                                </div>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="footer-logo" src="../assets/images/logo_bg.png" alt="Logo">
                 </div>
+                <div class="col-md-4">
+                    <h3>Contact Us</h3>
+                    <p>123 Main Street, City, Country</p>
+                    <p>Email: info@example.com</p>
+                    <p>Phone: +1 123 456 7890</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-media">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb5g6bRVt/vp5oVhBfiIsZnFjzSKX8vNbw5P1" crossorigin="anonymous"></script>
