@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var checkin = document.getElementById('checkin');
     var checkout = document.getElementById('checkout');
     var numDays = document.getElementById('numDays');
-    var numDaysValue =0;
+    var numDaysValue = 0;
+
     checkin.addEventListener('change', computeNumDays);
     checkout.addEventListener('change', computeNumDays);
 
@@ -30,21 +31,37 @@ document.addEventListener('DOMContentLoaded', function() {
     var payment = document.getElementById('payment');
     var cardFields = document.getElementById('cardFields');
     var paypalFields = document.getElementById('paypalFields');
+    var paypalEmail = document.getElementById('paypalEmail');
+
     
     function togglePaymentFields() {
         if (payment.value === 'credit' || payment.value === 'debit') {
             cardFields.style.display = 'block';
             paypalFields.style.display = 'none';
+            setRequiredFields(cardFields, true);
+            paypalEmail.required = false;
         } else if (payment.value === 'paypal') {
             cardFields.style.display = 'none';
             paypalFields.style.display = 'block';
+            setRequiredFields(cardFields, false);
+            paypalEmail.required = true;
         } else {
             cardFields.style.display = 'none';
             paypalFields.style.display = 'none';
+            setRequiredFields(cardFields, false);
+            paypalEmail.required = false;
         }
     }
 
-    togglePaymentFields(); // Set initial visibility of the fields
+    function setRequiredFields(container, required) {
+        var fields = container.querySelectorAll('input');
+        fields.forEach(function(field) {
+            field.required = required;
+        });
+    }
+
+    togglePaymentFields();
+
     payment.addEventListener('change', togglePaymentFields);
 
     const bookingForm = document.getElementById('bookingForm');
@@ -62,48 +79,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const paymentMethod = document.querySelector("#paymentMethod");
     const totalPrice = document.querySelector("#totalPrice");
     var price= 0;
-
-    switch(room.value){
-        case 'standard':
-            price = 500;
-            break;
-        case 'deluxe':
-            price = 800;
-            break;
-        case 'premium':
-            price = 1200;
-            break;
-        case 'executive':
-            price = 1900;
-            break;
-    }
-    
     
     submitButton.addEventListener('click', function(event) {
-        var product = (numDaysValue * price);
-        console.log(product)
         event.preventDefault();
-        const confirmationModal = document.getElementById('confirmationModal');
-        checkInday.innerHTML = checkin.value;
+
+        const room = document.querySelector('#room').value;
+
+        switch (room) {
+            case 'standard':
+                price = 500;
+                break;
+            case 'deluxe':
+                price = 800;
+                break;
+            case 'premium':
+                price = 1200;
+                break;
+            case 'executive':
+                price = 1900;
+                break;
+        }
+
+        var product = numDaysValue * price;
+
+        checkInDay.innerHTML = checkin.value;
         checkoutDay.innerHTML = checkout.value;
         numOfDays.innerHTML = numDaysValue.toString();
-        roomType.innerHTML = room.value.toUpperCase();
+        roomType.innerHTML = room.toUpperCase();
         paymentMethod.innerHTML = payment.value;
-        
         totalPrice.textContent = product;
-       
-        confirmationModal.classList.add('show');
-       
+
+        const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+        confirmationModal.show();
     });
+
     closeModal.addEventListener('click', function() {
         const confirmationModal = document.getElementById('confirmationModal');
+        const modalBackdrop = document.querySelector('.modal-backdrop');
+        if (modalBackdrop) {
+            modalBackdrop.remove();
+        }
         confirmationModal.classList.remove('show');
-        var backdrop = document.querySelector('.modal-backdrop');
-        backdrop.remove();
     });
+
     confirmButton.addEventListener('click', function() {
         bookingForm.submit();
     });
-
-   
 });

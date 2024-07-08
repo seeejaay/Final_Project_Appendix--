@@ -14,6 +14,7 @@ global $roomType;
 global $roomId;
 global $pricePerNight;
 global $totalPrice;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userId = $_SESSION['id'];
     $checkinDate = $_POST['checkin'];
@@ -21,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $numDays = $_POST['numDays'];
     $roomType = $_POST['room'];
     $paymentMethod = $_POST['payment'];
+    $paypalEmail = isset($_POST['paypalEmail']) ? $_POST['paypalEmail'] : '';
 
     // Validate check-in date at least 2 days in advance
     $today = date('Y-m-d');
@@ -43,6 +45,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
+     // Additional validation for PayPal email
+    if ($paymentMethod == 'paypal' && empty($paypalEmail)) {
+        echo "<script>";
+        echo "alert('PayPal email is required for PayPal payment method.');";
+        echo "window.location.href = 'booking.php';";
+        echo "</script>";
+        exit;
+    }
+
     // Get all available rooms of the selected type
     $stmt = $conn->prepare("SELECT * FROM room_tb WHERE roomtype = ? AND room_id NOT IN (SELECT room_id FROM room_tb WHERE checkInDate <= ? AND checkOutDate >= ?)");
     $stmt->bind_param('sss', $roomType, $checkoutDate, $checkinDate);
@@ -58,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $roomId = $selectedRoom['room_id'];
         $pricePerNight = $selectedRoom['pricePerNight'];
         $totalPrice = $numDays * $pricePerNight;
+        
         // Update the room with booking information
         $stmt = $conn->prepare("UPDATE room_tb SET booked = 1, dateBooked = CURDATE(), checkInDate = ?, checkOutDate = ?, numOfNights = ?, bookedBy = ? WHERE room_id = ?");
         $stmt->bind_param('ssiii', $checkinDate, $checkoutDate, $numDays, $userId, $roomId);
