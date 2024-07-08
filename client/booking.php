@@ -104,14 +104,12 @@
                                     </div>
                                     <div class="modal-body">
                                         <h5>Booking Details:</h5>
-                                        <p>Transaction ID: <span id="transactID"></span></p> 
                                         <p>Check-in Date: <span id="checkInDay"></span></p>
                                         <p>Check-out Date: <span id="checkoutDay"></span></p>
                                         <p>Number of Days: <span id="numOfDays"></span></p>
                                         <p>Room Type: <span id="roomType"></span></p>
                                         <p>Mode of Payment: <span id="paymentMethod"></span></p>
                                         <p>Total Price: <span id="totalPrice"></span></p>
-                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" id="closeModal" data-bs-dismiss="modal">Cancel</button>
@@ -121,6 +119,23 @@
                             </div>
                         </div>
 
+                        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="successModalLabel">Booking Success</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Your booking has been successfully completed!</p>
+                                    <p>Transaction ID: <span id="transactionID"></span></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="successOkButton">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                         <!-- Confirmation Modal -->
                     </form>
@@ -128,7 +143,7 @@
             </div>
         </section>
     </main>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb5g6bRVt/vp5oVhBfiIsZnFjzSKX8vNbw5P1" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7x6Z6J6rQ1h6oJSpLpiGpSyDF+jwRh9fhdM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 

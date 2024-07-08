@@ -2,20 +2,11 @@
 
 session_start();
 include 'dbConfig.php'; // Include database connection
+include 'genTransID.php'; // Include the transaction ID generation script
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: ../index.php');
     exit;
-}
-
-function generateTransactionID($firstName, $roomType) {
-    $transactID = strtoupper(substr($firstName, 0, 2)); // First two letters of the first name
-    $transactID .= strtoupper(date('M')); // Current month in three letters
-    $transactID .= date('d'); // Current day
-    $transactID .= date('my'); // Current year and month in two digits each
-    $transactID .= strtoupper($roomType); // Room type
-    $transactID .= str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT); // Random 5-digit number
-    return $transactID;
 }
 
 global $checkinDate;
@@ -69,10 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $roomId = $selectedRoom['room_id'];
         $pricePerNight = $selectedRoom['pricePerNight'];
         $totalPrice = $numDays * $pricePerNight;
-        
-        // Generate transaction ID
-        $userFirstName = $_SESSION['first_name'];
-        $transactionID = generateTransactionID($userFirstName, $roomType);
+
+        // Generate the transaction ID
+        $transactionID = genTransID($userId, $checkinDate, $roomType, $conn);
 
         // Update the room with booking information
         $stmt = $conn->prepare("UPDATE room_tb SET booked = 1, dateBooked = CURDATE(), checkInDate = ?, checkOutDate = ?, numOfNights = ?, bookedBy = ? WHERE room_id = ?");
@@ -84,13 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $transactionAmount = $totalPrice;
             $transactionDate = date('Y-m-d');
 
-            $stmt = $conn->prepare("INSERT INTO transaction_tb (transact_id, user_id, transaction_type, transaction_amount, transaction_date) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param('sisss', $transactionID, $userId, $transactionType, $transactionAmount, $transactionDate);
+            $stmt = $conn->prepare("INSERT INTO transaction_tb (transact_id, user_id, room_id, transaction_type, transaction_amount, transaction_date) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param('siisss', $transactionID, $userId, $roomId, $transactionType, $transactionAmount, $transactionDate);
 
             if ($stmt->execute()) {
+                // Booking successful, show the success modal with transaction ID
                 echo "<script>";
-                echo "alert('Booking successful! Transaction ID: $transactionID');";
-                echo "window.location.href = 'booking.php';"; // Redirect or update page as needed
+                echo "window.onload = function() {";
+                echo "showSuccessModal('{$transactionID}');";
+                echo "};";
                 echo "</script>";
             } else {
                 echo "<script>";

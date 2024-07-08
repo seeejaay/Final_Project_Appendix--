@@ -20,20 +20,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Set default check-in and check-out times
     var today = new Date();
-    var defaultCheckinTime = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1); // Default to tomorrow
-    var defaultCheckoutTime = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2); // Default to the day after tomorrow
-    checkin.valueAsDate = defaultCheckinTime;
-    checkout.valueAsDate = defaultCheckoutTime;
-    computeNumDays(); // Compute initial number of days
+    var defaultCheckinTime = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    var defaultCheckoutTime = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2);
+
+    checkin.value = defaultCheckinTime.toISOString().slice(0, 10);
+    checkout.value = defaultCheckoutTime.toISOString().slice(0, 10);
+    computeNumDays();
+
+    window.showSuccessModal = function(transactionID) {
+        document.getElementById('transactionID').innerText = transactionID;
+        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    }
 
     var payment = document.getElementById('payment');
     var cardFields = document.getElementById('cardFields');
     var paypalFields = document.getElementById('paypalFields');
     var paypalEmail = document.getElementById('paypalEmail');
 
-    
     function togglePaymentFields() {
         if (payment.value === 'credit' || payment.value === 'debit') {
             cardFields.style.display = 'block';
@@ -61,28 +66,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     togglePaymentFields();
-
     payment.addEventListener('change', togglePaymentFields);
 
     const bookingForm = document.getElementById('bookingForm');
     const submitButton = document.querySelector('#btn-submit');
     const confirmButton = document.querySelector('#btn-confirm');
     const closeModal = document.querySelector('#closeModal');
-    
-    const room= document.querySelector('#room');
+    const successOkButton = document.querySelector('#successOkButton');
 
-    //fields to store
-    const checkInday = document.querySelector('#checkInDay');
+    const room = document.querySelector('#room');
+    const checkInDay = document.querySelector('#checkInDay');
     const checkoutDay = document.querySelector('#checkoutDay');
     const numOfDays = document.querySelector('#numOfDays');
     const roomType = document.querySelector('#roomType');
     const paymentMethod = document.querySelector("#paymentMethod");
     const totalPrice = document.querySelector("#totalPrice");
-    var price= 0;
-    
+    var price = 0;
+
     submitButton.addEventListener('click', function(event) {
         event.preventDefault();
-
         const room = document.querySelector('#room').value;
 
         switch (room) {
@@ -124,5 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     confirmButton.addEventListener('click', function() {
         bookingForm.submit();
+    });
+
+    successOkButton.addEventListener('click', function() {
+        window.location.href = 'booking.php';
     });
 });
