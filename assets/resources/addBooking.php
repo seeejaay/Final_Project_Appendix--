@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include 'dbConfig.php'; // Include database connection
 
@@ -6,7 +7,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header('Location: ../index.php');
     exit;
 }
-
+global $checkinDate;
+global $checkoutDate;
+global $numDays;
+global $roomType;
+global $roomId;
+global $pricePerNight;
+global $totalPrice;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userId = $_SESSION['id'];
     $checkinDate = $_POST['checkin'];
@@ -50,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $selectedRoom = $availableRooms[array_rand($availableRooms)];
         $roomId = $selectedRoom['room_id'];
         $pricePerNight = $selectedRoom['pricePerNight'];
-
+        $totalPrice = $numDays * $pricePerNight;
         // Update the room with booking information
         $stmt = $conn->prepare("UPDATE room_tb SET booked = 1, dateBooked = CURDATE(), checkInDate = ?, checkOutDate = ?, numOfNights = ?, bookedBy = ? WHERE room_id = ?");
         $stmt->bind_param('ssiii', $checkinDate, $checkoutDate, $numDays, $userId, $roomId);
