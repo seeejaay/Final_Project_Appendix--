@@ -44,7 +44,6 @@
     
 }
 
-
 .title {
     position: absolute;
     top: 50%;
@@ -55,6 +54,22 @@
     gap: 10px;
     color: #fff;
     filter: opacity(0.7);
+}
+
+
+
+
+
+
+.btn-custom{
+    border: 2px solid var(--browndark);
+    padding: 5px 40px ;
+    font-size: 1.1rem ;
+    color: #fff ;
+    background: var(--browndark) ;
+    &:hover{
+        transform: scale(1.1);
+    }
 }
 
 .modal{
