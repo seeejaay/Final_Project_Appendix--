@@ -182,8 +182,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <button type="submit" class=" btn-custom">Submit</button>
 
-
-
                     </form>
                 </div>
             </div>
