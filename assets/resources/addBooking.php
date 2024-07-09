@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "window.location.href = 'booking.php';";
         echo "</script>";
     }
-
+    //transact ID
     $stmt->close();
     $conn->close();
 }
