@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (payment.value === 'paypal') {
             cardFields.style.display = 'none';
             paypalFields.style.display = 'block';
-            setRequiredFields(cardFields, false);
+            setRequiredFields(cardFields, true);
             paypalEmail.required = true;
         } else {
             cardFields.style.display = 'none';
             paypalFields.style.display = 'none';
             setRequiredFields(cardFields, false);
-            paypalEmail.required = false;
+            paypalEmail.required = true;
         }
     }
 
@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     togglePaymentFields();
     payment.addEventListener('change', togglePaymentFields);
+
 
     const bookingForm = document.getElementById('bookingForm');
     const submitButton = document.querySelector('#btn-submit');
@@ -110,9 +111,11 @@ document.addEventListener('DOMContentLoaded', function() {
         roomType.innerHTML = room.toUpperCase();
         paymentMethod.innerHTML = payment.value;
         totalPrice.textContent = product;
-
-        const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-        confirmationModal.show();
+        
+     
+            const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            confirmationModal.show();
+        
     });
 
     closeModal.addEventListener('click', function() {

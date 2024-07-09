@@ -78,7 +78,7 @@
                         <div id="cardFields" style="display: none;">
                             <div class="form-group">
                                 <label for="cardNumber">Card Number</label>
-                                <input type="number" class="form-control" id="cardNumber" name="cardNumber" required minlength="16" maxlength="16">
+                                <input type="number" class="form-control" id="cardNumber" name="cardNumber" required minlength="16" maxlength="16" aria-required="true">
                             </div>
                             <div class="form-group">
                                 <label for="expiry">Expiry Date</label>
@@ -86,18 +86,18 @@
                             </div>
                             <div class="form-group">
                                 <label for="securityCode">Security Code</label>
-                                <input type="number" class="form-control" id="securityCode" name="securityCode" required min="100" max="999">
+                                <input type="number" class="form-control" id="securityCode" name="securityCode" aria-required="true" required min="100" max="999">
                             </div>
                         </div>
 
                         <div id="paypalFields" style="display: none;">
                             <div class="form-group mt-5">
                                 <label for="paypalEmail">PayPal Email</label>
-                                <input type="email" class="form-control" id="paypalEmail" name="paypalEmail">
+                                <input type="email" class="form-control" id="paypalEmail" name="paypalEmail" required aria-required="true">
                             </div>
                         </div>
 
-                        <button class="btn-custom" id="btn-submit" data-bs-toggle="modal" data-bs-target="#confirmationModal">Submit</button>
+                        <button class="btn-custom" id="btn-submit" data-bs-toggle="modal" data-bs-target="#confirmationModal" type="submit">Submit</button>
 
 
                         <!-- Confirmation Modal -->
@@ -135,27 +135,27 @@
     </main>
 
     <footer class="footer">
-                <div class="container">
-                        <div class="row">
-                                <div class="col-md-4">
-                                        <img class="footer-logo" src="../assets/images/logo_bg.png" alt="Logo">
-                                </div>
-                                <div class="col-md-4">
-                                        <h3>Contact Us</h3>
-                                        <p>123 Main Street, City, Country</p>
-                                        <p>Email: info@example.com</p>
-                                        <p>Phone: +1 123 456 7890</p>
-                                </div>
-                                <div class="col-md-4">
-                                        <h3>Follow Us</h3>
-                                        <ul class="social-media">
-                                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        </ul>
-                                </div>
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="footer-logo" src="../assets/images/logo_bg.png" alt="Logo">
                 </div>
+                <div class="col-md-4">
+                    <h3>Contact Us</h3>
+                    <p>123 Main Street, City, Country</p>
+                    <p>Email: info@example.com</p>
+                    <p>Phone: +1 123 456 7890</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Follow Us</h3>
+                    <ul class="social-media">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb5g6bRVt/vp5oVhBfiIsZnFjzSKX8vNbw5P1" crossorigin="anonymous"></script>

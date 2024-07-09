@@ -24,6 +24,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $roomType = $_POST['room'];
     $paymentMethod = $_POST['payment'];
 
+    $cardNumber = $_POST['cardNumber'];
+    $expiryDate = $_POST['expiry'];
+    $securityCode = $_POST['securityCode'];
+
+    $paypalEmail = $_POST['paypalEmail'];
+
+    if ($paymentMethod == 'paypal') {
+        if (empty($paypalEmail)) {
+            echo "<script>";
+            echo "alert('Please add Paypal Email');";
+            echo "window.location.href = 'booking.php';";
+            echo "</script>";
+            exit;
+        }
+    } else {
+        if ((empty($cardNumber) && empty($expiryDate) && empty($securityCode))) {
+            echo "<script>";
+            echo "alert('Please Fill All Fields');";
+            echo "window.location.href = 'booking.php';";
+            echo "</script>";
+            exit;
+        }
+    }
+
+
     // Validate check-in date at least 2 days in advance
     $today = date('Y-m-d');
     $minCheckinDate = date('Y-m-d', strtotime($today . ' + 2 days'));
@@ -107,4 +132,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
     $conn->close();
 }
-?>
