@@ -27,46 +27,52 @@
         </div>
         <section class="booking">
             <div class="booking-info">
+                <h2>Book Your Stay</h2>
+                <p>Fill in the form and we'll get back to you shortly.</p>
                 <div class="booking-form">
                     <form action="booking.php" method="POST" id="bookingForm">
-                        <div class="form-group">
-                            <label for="checkin">Check-in Date</label>
-                            <input type="date" class="form-control" id="checkin" name="checkin" required>
+                        <div class="date-fields row mb-3">
+                            <div class="form-group col-md-6">
+                                <label for="checkin">Check-in Date</label>
+                                <input type="date" class="form-control" id="checkin" name="checkin" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="checkout">Check-out Date</label>
+                                <input type="date" class="form-control" id="checkout" name="checkout" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="checkout">Check-out Date</label>
-                            <input type="date" class="form-control" id="checkout" name="checkout" required>
-                        </div>
-                        <div class="form-group">
+                        <div class="form-group mb-3">
                             <label for="numDays">Number of Days</label>
                             <input type="text" class="form-control" id="numDays" name="numDays" readonly>
                         </div>
-                        <div class="form-group">
-                            <label for="checkInTime">Check In Time</label>
-                            <input type="text" class="form-control" id="checkInTime" name="checkInTime" value="10:00 A.M." readonly>
+                        <div class="date-fields row mb-2">
+                            <div class="form-group col-md-6">
+                                <label for="checkInTime">Check In Time</label>
+                                <input type="text" class="form-control small" id="checkInTime" name="checkInTime" value="10:00 A.M." readonly>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="checkOutTime">Check Out Time</label>
+                                <input type="text" class="form-control small" id="checkOutTime" name="checkOutTime" value="10:00 A.M." readonly>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="checkOutTime">Check Out Time</label>
-                            <input type="text" class="form-control" id="checkOutTime" name="checkOutTime" value="10:00 A.M." readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="room">Room Type</label>
-                            <select class="form-control" id="room" name="room" required>
-                                <option value="standard">Standard</option>
-                                <option value="deluxe">Deluxe</option>
-                                <option value="premium">Premium</option>
-                                <option value="executive">Executive</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="payment">Mode of Payment</label>
-                            <select class="form-control" id="payment" name="payment" required>
-                                <option value="paypal">PayPal</option>
-                                <option value="credit">Credit Card</option>
-                                <option value="debit">Debit Card</option>
-                            </select>
+                        <div class="date-fields row mb-2">
+                            <div class="form-group col-md-5"> <!-- Adjusted from col-md-5 to col-md-6 -->
+                                <label for="room">Room Type</label>
+                                <select class="form-control" id="room" name="room" required>
+                                    <option value="standard">Standard</option>
+                                    <option value="deluxe">Deluxe</option>
+                                    <option value="premium">Premium</option>
+                                    <option value="executive">Executive</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-7"> <!-- Adjusted from col-md-8 to col-md-6 -->
+                                <label for="payment">Mode of Payment</label>
+                                <select class="form-control" id="payment" name="payment" required>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="credit">Credit Card</option>
+                                    <option value="debit">Debit Card</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div id="cardFields" style="display: none;">
@@ -85,7 +91,7 @@
                         </div>
 
                         <div id="paypalFields" style="display: none;">
-                            <div class="form-group">
+                            <div class="form-group mt-5">
                                 <label for="paypalEmail">PayPal Email</label>
                                 <input type="email" class="form-control" id="paypalEmail" name="paypalEmail">
                             </div>
@@ -101,7 +107,6 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <h5>Booking Details:</h5>
@@ -111,10 +116,11 @@
                                         <p>Room Type: <span id="roomType"></span></p>
                                         <p>Mode of Payment: <span id="paymentMethod"></span></p>
                                         <p>Total Price: <span id="totalPrice"></span></p>
+
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" id="closeModal" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary" id="btn-confirm">Confirm</button>
+                                        <button type="button" class="btn-custom" id="closeModal" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn-custom" id="btn-confirm">Confirm</button>
                                     </div>
                                 </div>
                             </div>
