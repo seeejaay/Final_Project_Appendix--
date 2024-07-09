@@ -24,40 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $roomType = $_POST['room'];
     $paymentMethod = $_POST['payment'];
 
-    $cardNumber = $_POST['cardNumber'];
-    $expiryDate = $_POST['expiry'];
-    $securityCode = $_POST['securityCode'];
-
-    $paypalEmail = $_POST['paypalEmail'];
-    $today = date('Y-m-d');
-    $minCheckinDate = date('Y-m-d', strtotime($today . ' + 2 days'));
-    $minexpirydate = date('Y-m-d', strtotime($today . ' + 3 months'));
-
-    if ($paymentMethod == 'paypal') {
-        if (empty($paypalEmail)) {
-            echo "<script>";
-            echo "alert('Please add Paypal Email');";
-            echo "window.location.href = 'booking.php';";
-            echo "</script>";
-            exit;
-        }
-    } else {
-        if ((empty($cardNumber) && empty($expiryDate) && empty($securityCode))) {
-            echo "<script>";
-            echo "alert('Please Fill All Fields');";
-            echo "window.location.href = 'booking.php';";
-            echo "</script>";
-            exit;
-        } elseif ($expiryDate <= $today || $expiryDate <= $minexpirydate) {
-            echo "<script>";
-            echo "alert('Card should not expire for another 3 months');";
-            echo "window.location.href = 'booking.php';";
-            echo "</script>";
-            exit;
-        }
-    }
-
-
     // Validate check-in date at least 2 days in advance
     $today = date('Y-m-d');
     $minCheckinDate = date('Y-m-d', strtotime($today . ' + 2 days'));
@@ -95,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pricePerNight = $selectedRoom['pricePerNight'];
         $totalPrice = $numDays * $pricePerNight;
 
-        // Display transaction id
+        // Generate the transaction ID
         $transactionID = genTransID($userId, $checkinDate, $roomType, $conn);
 
         // Update the room with booking information

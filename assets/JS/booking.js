@@ -122,11 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
             modalBackdrop.remove();
         }
         confirmationModal.classList.remove('show');
-
-        setTimeout(() => {
-            
-            window.location.reload();
-        }, 500);
     });
 
     confirmButton.addEventListener('click', function() {
@@ -134,6 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     successOkButton.addEventListener('click', function() {
-        window.location.href = 'viewBooking.php';
+        window.location.href = 'booking.php';
     });
 });
