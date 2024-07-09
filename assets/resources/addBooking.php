@@ -95,8 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pricePerNight = $selectedRoom['pricePerNight'];
         $totalPrice = $numDays * $pricePerNight;
 
-        // Generate the transaction ID
-        $transactionID = genTransID($userId, $checkinDate, $roomType, $conn);
 
         // Update the room with booking information
         $stmt = $conn->prepare("UPDATE room_tb SET booked = 1, dateBooked = CURDATE(), checkInDate = ?, checkOutDate = ?, numOfNights = ?, bookedBy = ? WHERE room_id = ?");
