@@ -134,6 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     successOkButton.addEventListener('click', function() {
-        window.location.href = 'booking.php';
+        window.location.href = 'viewBooking.php';
     });
 });
