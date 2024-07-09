@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (payment.value === 'paypal') {
             cardFields.style.display = 'none';
             paypalFields.style.display = 'block';
-            setRequiredFields(cardFields, true);
+            setRequiredFields(cardFields, false);
             paypalEmail.required = true;
         } else {
             cardFields.style.display = 'none';
             paypalFields.style.display = 'none';
             setRequiredFields(cardFields, false);
-            paypalEmail.required = true;
+            paypalEmail.required = false;
         }
     }
 
@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     togglePaymentFields();
     payment.addEventListener('change', togglePaymentFields);
-
 
     const bookingForm = document.getElementById('bookingForm');
     const submitButton = document.querySelector('#btn-submit');
@@ -109,23 +108,25 @@ document.addEventListener('DOMContentLoaded', function() {
         checkoutDay.innerHTML = checkout.value;
         numOfDays.innerHTML = numDaysValue.toString();
         roomType.innerHTML = room.toUpperCase();
-        paymentMethod.innerHTML = payment.value.toUpperCase();
-        totalPrice.textContent = "₱ " + new Intl.NumberFormat().format(product);
-        
-     
-            const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
-            confirmationModal.show();
-          
+        paymentMethod.innerHTML = payment.value;
+        totalPrice.textContent = product;
+
+        const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+        confirmationModal.show();
     });
 
     closeModal.addEventListener('click', function() {
         const confirmationModal = document.getElementById('confirmationModal');
+        const modalBackdrop = document.querySelector('.modal-backdrop');
+        if (modalBackdrop) {
+            modalBackdrop.remove();
+        }
         confirmationModal.classList.remove('show');
-        
-        setTimeout(function() {
+
+        setTimeout(() => {
+            
             window.location.reload();
-        },500); 
-        
+        }, 500);
     });
 
     confirmButton.addEventListener('click', function() {
