@@ -109,22 +109,23 @@ document.addEventListener('DOMContentLoaded', function() {
         checkoutDay.innerHTML = checkout.value;
         numOfDays.innerHTML = numDaysValue.toString();
         roomType.innerHTML = room.toUpperCase();
-        paymentMethod.innerHTML = payment.value;
-        totalPrice.textContent = product;
+        paymentMethod.innerHTML = payment.value.toUpperCase();
+        totalPrice.textContent = "₱ " + new Intl.NumberFormat().format(product);
         
      
             const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
             confirmationModal.show();
-        
+          
     });
 
     closeModal.addEventListener('click', function() {
         const confirmationModal = document.getElementById('confirmationModal');
-        const modalBackdrop = document.querySelector('.modal-backdrop');
-        if (modalBackdrop) {
-            modalBackdrop.remove();
-        }
         confirmationModal.classList.remove('show');
+        
+        setTimeout(function() {
+            window.location.reload();
+        },500); 
+        
     });
 
     confirmButton.addEventListener('click', function() {

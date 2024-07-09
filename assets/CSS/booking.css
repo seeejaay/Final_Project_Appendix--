@@ -136,6 +136,13 @@
     padding-right: 20px; 
 }
 
+.hide{
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+    visibility: hidden !important;
+}
+
 @media (max-width: 545px) {
     .date-fields {
         flex-direction: column; /* Stacks the form fields vertically on smaller screens */
