@@ -7,14 +7,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const numDays = row.dataset.numDays;
             const roomType = row.dataset.roomType;
             const paymentMode = row.dataset.paymentMode;
-            const roomID = row.dataset.room_id;
+            const roomID = row.dataset.roomId;
 
             document.getElementById('viewCheckInDate').textContent = checkInDate;
             document.getElementById('viewCheckOutDate').textContent = checkOutDate;
             document.getElementById('viewNumDays').textContent = numDays;
             document.getElementById('viewRoomType').textContent = roomType;
             document.getElementById('viewPaymentMode').textContent = paymentMode;
-            document.getElementById('viewRoomID').textContent = roomID;
+            document.getElementById('viewRoomID').textContent = roomID; 
 
             const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
             viewModal.show();
@@ -57,7 +57,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    
+    // added for editing the right id in the edit modal - dalet
+    $(document).ready(function() {
+        $('.edit-booking').on('click', function() {
+            var roomId = $(this).data('room-id');
+            $('#editRoomId').val(roomId);
+        });
+    });
+
 // Select edit and cancel buttons
 const editButtons = document.querySelectorAll('.edit-booking');
 const cancelButtons = document.querySelectorAll('.cancel-booking');
@@ -65,7 +72,7 @@ const cancelButtons = document.querySelectorAll('.cancel-booking');
 // Function to handle edit button click
 function handleEditClick(event) {
     const room_id = event.target.dataset.room_id;
-    sessionStorage.setItem('editRoomId', room_id); // Store// Store transact_id in sessionStorage
+    sessionStorage.setItem('editRoomId', room_id);
 }
 
 // Function to handle cancel button click

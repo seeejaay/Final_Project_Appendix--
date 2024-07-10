@@ -56,7 +56,7 @@ include '../assets/resources/editBooking.php';
                     <table class="table table-bordered">
                         <tbody>
                             <?php while ($row = $result->fetch_assoc()) : ?>
-                                <tr data-transact-id="<?php echo $row['transact_id']; ?>" data-check-in-date="<?php echo $row['checkInDate']; ?>" data-check-out-date="<?php echo $row['checkOutDate']; ?>" data-num-days="<?php echo (strtotime($row['checkOutDate']) - strtotime($row['checkInDate'])) / 86400; ?>" data-room-type="<?php echo $row['roomtype']; ?>" data-payment-mode="<?php echo $row['transaction_type']; ?>">
+                                <tr data-transact-id="<?php echo $row['transact_id']; ?>" data-check-in-date="<?php echo $row['checkInDate']; ?>" data-check-out-date="<?php echo $row['checkOutDate']; ?>" data-num-days="<?php echo (strtotime($row['checkOutDate']) - strtotime($row['checkInDate'])) / 86400; ?>" data-room-type="<?php echo $row['roomtype']; ?>" data-payment-mode="<?php echo $row['transaction_type']; ?>" data-room-id="<?php echo $row['room_id']; ?>">
                                     <td>
                                         <?php echo $row['roomtype']; ?><br>
                                         <?php echo $row['transact_id']; ?>
@@ -65,16 +65,12 @@ include '../assets/resources/editBooking.php';
                                         <?php echo $row['checkInDate']; ?> - <?php echo $row['checkOutDate']; ?> of year 2024<br>
                                         Booked by: <?php echo $row['bookedBy']; ?><br>
                                         Room #: <?php echo $row['room_id']; ?><br>
-                                        Status: <?php echo $row['status'];
-                                                $_SESSION['room_id'] = $row['room_id'];
-                                                print_r($_SESSION['$room_id']);
-                                                ?>
-
+                                        Status: <?php echo $row['status']; ?>
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary view-booking">View</button>
-                                        <button class="btn btn-success edit-booking">Edit</button>
-                                        <button class="btn btn-danger cancel-booking">Cancel Reservation</button>
+                                        <button class="btn btn-primary view-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#viewModal">View</button>
+                                        <button class="btn btn-success edit-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#editModal">Edit</button>
+                                        <button class="btn btn-danger cancel-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#cancelModal">Cancel Reservation</button>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
@@ -109,7 +105,6 @@ include '../assets/resources/editBooking.php';
 
             <!-- Edit Modal -->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -129,7 +124,7 @@ include '../assets/resources/editBooking.php';
                                     <label for="editNumDays">Number of Days</label>
                                     <input type="text" class="form-control" id="editNumDays" name="numDays" readonly>
                                 </div>
-                                <input type="input" id="editRoomId" name="room_id">
+                                <input type="hidden" id="editRoomId" name="room_id">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                             </form>
@@ -143,13 +138,12 @@ include '../assets/resources/editBooking.php';
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <h5 class="modal-title" id="cancelModalLabel">Cancel Booking</h5>
                         </div>
                         <div class="modal-body">
                             <p>Are you sure you want to cancel this booking?</p>
-                            <form id="cancelForm" method="post">
-                                <input type="input" id="cancelTransactId" name="transact_id">
+                            <form id="cancelForm" method="post" action="../assets/resources/cancelBooking.php">
+                                <input type="hidden" id="cancelTransactId" name="transact_id">
                                 <button type="button" class="btn btn-secondary" onclick="window.location.href='viewBooking.php'">Cancel</button>
                                 <button type="submit" class="btn btn-danger">Confirm Cancellation</button>
                             </form>
@@ -192,7 +186,5 @@ include '../assets/resources/editBooking.php';
 </html>
 
 <?php
-
-$stmt->close();
 $conn->close();
 ?>

@@ -1,5 +1,5 @@
 <?php
-include '../assets/resources/dbConfig.php';
+include 'dbConfig.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $transact_id = $_POST['transact_id'];

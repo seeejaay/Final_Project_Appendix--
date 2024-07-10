@@ -3,7 +3,7 @@ session_start();
 include 'dbConfig.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $roomId = $_SESSION['room_id'];
+    $roomId = $_POST['room_id'];
     $checkInDate = $_POST['checkin'];
     $checkOutDate = $_POST['checkout'];
 
@@ -14,12 +14,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conn->prepare("UPDATE room_tb SET checkInDate = ?, checkOutDate = ? WHERE room_id = ?");
-    $stmt->bind_param("sss", $checkInDate, $checkOutDate, $roomId);
+    // Calculate the number of days
+    $checkInTimestamp = strtotime($checkInDate);
+    $checkOutTimestamp = strtotime($checkOutDate);
+    $numDays = ($checkOutTimestamp - $checkInTimestamp) / 86400;
+
+    $stmt = $conn->prepare("UPDATE room_tb SET checkInDate = ?, checkOutDate = ?, numOfNights = ? WHERE room_id = ?");
+    $stmt->bind_param("ssis", $checkInDate, $checkOutDate, $numDays, $roomId);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Error updating booking: ' . $conn->error]);
     }
+    $stmt->close();
+    $conn->close();
 }
+?>
