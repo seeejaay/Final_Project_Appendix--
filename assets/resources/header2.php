@@ -16,10 +16,10 @@
                 <a class="nav-link" href="../about.php">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-signin-modal-trigger btn-nav" id="bookingBtn" data-signin="login" href="../client/booking.php">Booking</a>
+                <a class="nav-link js-signin-modal-trigger btn-nav" id="bookingBtn" href="../client/booking.php">Booking</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-signin-modal-trigger btn-nav" id="viewBookingBtn" data-signin="login" href="../client/viewBooking.php">View Booking</a>
+                <a class="nav-link js-signin-modal-trigger btn-nav" id="viewBookingBtn" href="../client/viewBooking.php">View Booking</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>

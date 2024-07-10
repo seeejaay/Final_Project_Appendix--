@@ -7,36 +7,39 @@ document.addEventListener('DOMContentLoaded', function () {
             const numDays = row.dataset.numDays;
             const roomType = row.dataset.roomType;
             const paymentMode = row.dataset.paymentMode;
+            const roomID = row.dataset.roomId;
 
             document.getElementById('viewCheckInDate').textContent = checkInDate;
             document.getElementById('viewCheckOutDate').textContent = checkOutDate;
             document.getElementById('viewNumDays').textContent = numDays;
             document.getElementById('viewRoomType').textContent = roomType;
             document.getElementById('viewPaymentMode').textContent = paymentMode;
+            document.getElementById('viewRoomID').textContent = roomID; 
 
             const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
             viewModal.show();
         });
     });
 
+    // Use event delegation for the edit button
     document.querySelectorAll('.edit-booking').forEach(function (element) {
         element.addEventListener('click', function () {
             const row = this.closest('tr');
-            const transactId = row.dataset.transactId;
+            const roomId = row.dataset.roomId; // Retrieve room ID from dataset
+
+            // Set room ID in the hidden input field
+            document.getElementById('editRoomId').value = roomId;
+
+            // Other code to set values in the edit modal form
             const checkInDate = row.dataset.checkInDate;
             const checkOutDate = row.dataset.checkOutDate;
             const numDays = row.dataset.numDays;
-            const roomType = row.dataset.roomType;
-            const paymentMode = row.dataset.paymentMode;
 
-            const editForm = document.getElementById('editForm');
-            editForm.action = `editBooking.php?transact_id=${transactId}`;
             document.getElementById('editCheckInDate').value = checkInDate;
             document.getElementById('editCheckOutDate').value = checkOutDate;
             document.getElementById('editNumDays').value = numDays;
-            document.getElementById('editRoomType').value = roomType;
-            document.getElementById('editPaymentMode').value = paymentMode;
 
+            // Show the edit modal
             const editModal = new bootstrap.Modal(document.getElementById('editModal'));
             editModal.show();
         });
@@ -54,55 +57,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document.getElementById('editForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        const actionUrl = this.action;
-
-        // Client-side validation: Check if check-in date is valid
-        const checkInDate = formData.get('checkin');
-        const today = new Date().toISOString().split('T')[0];
-        if (checkInDate <= today) {
-            alert('Check-in date must be onwards from today.');
-            return;
-        }
-
-        fetch(actionUrl, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(jsonResponse => {
-            if (jsonResponse.success) {
-                window.location.href = 'viewBooking.php';
-            } else {
-                alert(jsonResponse.message);
-            }
-        })
-        .catch(() => {
-            alert('An error occurred. Please try again.');
+    // added for editing the right id in the edit modal - dalet
+    $(document).ready(function() {
+        $('.edit-booking').on('click', function() {
+            var roomId = $(this).data('room-id');
+            $('#editRoomId').val(roomId);
         });
     });
 
-    // Modify cancel form submission to handle cancellation and update UI
-    document.getElementById('cancelForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const formData = new FormData(this);
+// Select edit and cancel buttons
+const editButtons = document.querySelectorAll('.edit-booking');
+const cancelButtons = document.querySelectorAll('.cancel-booking');
 
-        fetch('cancelBooking.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(jsonResponse => {
-            if (jsonResponse.success) {
-                window.location.href = 'viewBooking.php';
-            } else {
-                alert(jsonResponse.message);
-            }
-        })
-        .catch(() => {
-            alert('An error occurred. Please try again.');
-        });
-    });
+// Function to handle edit button click
+function handleEditClick(event) {
+    const room_id = event.target.dataset.room_id;
+    sessionStorage.setItem('editRoomId', room_id);
+}
+
+// Function to handle cancel button click
+function handleCancelClick(event) {
+    const transactId = event.target.dataset.transactId; // Retrieve transact_id from data attribute
+    sessionStorage.setItem('cancelTransactId', transactId); // Store transact_id in sessionStorage
+
+    
+}
+
+// Attach click event listeners to edit buttons
+editButtons.forEach(button => {
+    button.addEventListener('click', handleEditClick);
+});
+
+// Attach click event listeners to cancel buttons
+cancelButtons.forEach(button => {
+    button.addEventListener('click', handleCancelClick);
+});
+
 });
