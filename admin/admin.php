@@ -30,11 +30,11 @@ include '../assets/resources/dbConfig.php';
 </head>
 
 <body>
-<?php include 'header3.php' ?>
-<div class="content-wrapper">
-    <section class="content">
-        <div class="container-fluid">
-            <?php
+    <?php include 'header3.php' ?>
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <?php
                 $page = $_GET['page'] ?? 'home'; // Default to home page if no specific page request
                 switch ($page) {
                     case 'add':
@@ -46,7 +46,7 @@ include '../assets/resources/dbConfig.php';
                     case 'delete':
                         include 'delete.php';
                         break;
-                    case 'view':
+                    case 'viewAll_Trans':
                         include 'viewAll_Trans.php';
                         break;
                     case 'view_single':
@@ -56,10 +56,10 @@ include '../assets/resources/dbConfig.php';
                         echo '<div class="alert alert-info">WELCOME BACK, ADMIN!</div>';
                         break;
                 }
-            ?>
-        </div>
-    </section>
-</div>
+                ?>
+            </div>
+        </section>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb5g6bRVt/vp5oVhBfiIsZnFjzSKX8vNbw5P1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

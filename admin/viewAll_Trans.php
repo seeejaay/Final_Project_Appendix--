@@ -1,7 +1,8 @@
 <?php
 include '../assets/resources/dbConfig.php';
 
-function getTransactions($conn) {
+function getTransactions($conn)
+{
     $sql = "
         SELECT 
             t.transact_id, t.user_id, t.transaction_date, t.transaction_amount, t.cancelled, 
@@ -13,12 +14,12 @@ function getTransactions($conn) {
             room_tb r ON t.room_id = r.room_id
         JOIN 
             user_tb u ON t.user_id = u.id";
-    
+
     $result = $conn->query($sql);
-    
+
     $transactions = [];
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             $transactions[] = $row;
         }
     }
@@ -32,6 +33,7 @@ $conn->close();
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Transaction Data</title>
     <!-- AdminLTE CSS -->
@@ -42,12 +44,20 @@ $conn->close();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        ul li {
+            width: 100%;
+            max-width: 120px;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body class="hold-transition sidebar-mini">
-<?php include 'header3.php' ?>
-<div class="wrapper">
-    <!-- Main content -->
-    <div class="content-wrapper">
+    <div class="wrapper">
+        <!-- Main content -->
+
         <section class="content">
             <div class="container-fluid">
                 <div class="card">
@@ -92,7 +102,7 @@ $conn->close();
                                             echo "<td>" . htmlspecialchars($transaction['numOfNights']) . "</td>";
                                             echo "<td>" . ($transaction['cancelled'] ? 'Yes' : 'No') . "</td>";
                                             echo "<td>
-                                                <a href='index.php?page=edit&id={$transaction['transact_id']}' class='btn btn-info'>Edit</a>
+                                                <a href='admin.php?page=edit&id={$transaction['transact_id']}' class='btn btn-info'>Edit</a>
                                                 </td>";
                                             echo "</tr>";
                                         }
@@ -108,31 +118,32 @@ $conn->close();
             </div>
         </section>
     </div>
-</div>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
-<!-- DataTables -->
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-<script>
-$(document).ready(function() {
-    $('#transactionTable').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,  // Add this line to make DataTable responsive
-    });
-});
-</script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#transactionTable').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true, // Add this line to make DataTable responsive
+            });
+        });
+    </script>
 
 </body>
+
 </html>
