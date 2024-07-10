@@ -50,22 +50,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('s', $transact_id);
             if ($stmt->execute()) {
-                echo '<script>';
-                echo 'alert("Cancellation Successful");';
-                echo 'window.location.href = "../../client/viewBooking.php";'; // Redirect using JavaScript
-                echo '</script>';
-                exit; // Stop execution after displaying alert and redirecting
+                // Update room status
+                $stmt = $conn->prepare('UPDATE room_tb SET booked = 0, dateBooked = NULL, checkInDate = NULL, checkOutDate = NULL, numOfNights = 0, bookedBy = NULL WHERE room_id = ?');
+                $stmt->bind_param('i', $room_id);
+                if ($stmt->execute()) {
+                    echo '<script>';
+                    echo 'alert("Cancellation Successful");';
+                    echo 'window.location.href = "../../client/viewBooking.php";'; // Redirect using JavaScript
+                    echo '</script>';
+                    exit; // Stop execution after displaying alert and redirecting
+                } else {
+                    echo '<script>';
+                    echo 'alert("Failed to update room status.");';
+                    echo 'window.location.href = "../../client/viewBooking.php";'; // Redirect using JavaScript
+                    echo '</script>';
+                    exit; // Stop execution after displaying alert and redirecting
+                }
             } else {
                 echo '<script>';
                 echo 'alert("Failed to cancel booking.");';
                 echo 'window.location.href = "../../client/viewBooking.php";'; // Redirect using JavaScript
                 echo '</script>';
+                exit; // Stop execution after displaying alert and redirecting
             }
-
-            // Update room status
-            $stmt = $conn->prepare('UPDATE room_tb SET booked = 0, dateBooked = NULL, checkInDate = NULL, checkOutDate = NULL, numOfNights = 0, bookedBy = NULL WHERE room_id = ?');
-            $stmt->bind_param('i', $room_id);
-            $stmt->execute();
         } else {
             // Redirect if cancellation is not allowed
             echo '<script>alert("Already Cancelled.");</script>';
@@ -74,7 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         // Handle case where transaction is not found
-        echo json_encode(['success' => false, 'message' => 'Transaction not found.']);
+        echo '<script>alert("No Transaction Found.");</script>';
+        echo '<script>window.location.href = "../client/viewBooking.php";</script>';
+        exit; // Stop execution after displaying alert and redirecting
     }
 
     // Close the statement
