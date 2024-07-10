@@ -49,8 +49,38 @@ document.addEventListener('DOMContentLoaded', function () {
         element.addEventListener('click', function () {
             const row = this.closest('tr');
             const transactId = row.dataset.transactId;
+            const checkInDate = new Date(row.dataset.checkInDate);
+            const checkOutDate = row.dataset.checkOutDate;
+            const roomID = row.dataset.roomId;
+            const pricePerNight = parseFloat(row.dataset.pricePerNight);
+            const numOfNights = parseInt(row.dataset.numOfNights);
+
+            const today = new Date();
+            const timeDiff = checkInDate - today;
+            const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            let cancellationFee = 0;
+            if (daysDiff >= 5) {
+                cancellationFee = 0.1;
+            } else if (daysDiff == 4) {
+                cancellationFee = 0.15;
+            } else if (daysDiff >= 2 && daysDiff <= 3) {
+                cancellationFee = 0.2;
+            } else if (daysDiff == 1) {
+                alert('Cannot cancel the reservation 1 day before check-in date.');
+                return;
+            }
+
+            const totalAmount = pricePerNight * numOfNights;
+            const feeAmount = totalAmount * cancellationFee;
+            const refundAmount = totalAmount - feeAmount;
 
             document.getElementById('cancelTransactId').value = transactId;
+            document.getElementById('cancelCheckInDate').textContent = checkInDate.toDateString();
+            document.getElementById('cancelCheckOutDate').textContent = checkOutDate;
+            document.getElementById('cancelRoomID').textContent = roomID;
+            document.getElementById('cancelFeeAmount').textContent = feeAmount.toFixed(2);
+            document.getElementById('cancelRefundAmount').textContent = refundAmount.toFixed(2);
 
             const cancelModal = new bootstrap.Modal(document.getElementById('cancelModal'));
             cancelModal.show();
