@@ -19,6 +19,7 @@
     flex-direction: column;
     min-height: 100svh;
     padding: 20px 0 0 0;
+    background-color: var(--offwhite);
 }
 
 .top {
@@ -26,7 +27,7 @@
     width: 100%;
     min-height: 50svh;
     overflow: hidden;
-    
+    z-index: 1;
 }
 
 .top::before {
@@ -88,4 +89,84 @@
 .modal-dialog{
     width: 100% !important;
    
+}
+
+.conwrap{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    background-color: var(--offwhite);
+    h2{
+        font-weight: bold;
+        font-size: clamp(1.5rem, 2.5vw, 3rem);
+        font-family: 'popins', sans-serif;
+    }
+}
+
+.newgate{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.ace{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: inset 0 0 10px 2px #eae9da!important;
+}
+
+.table-responsive{
+    width: 100%;
+    max-width: 800px;
+}
+
+.table {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.rtbl{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 20px 0;
+}
+
+.stacked-cell {
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
+    justify-content: flex-start; /* Aligns children to the start of the flex container */
+    align-items: center; /* Aligns items to the start of the cross axis */
+    text-align: center;
+}
+
+.adjustable-font-size {
+    font-family: 'popins', sans-serif;
+    font-weight: bold;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem); /* Adjust these values as needed */
+  }
+
+.card-text{
+    font-family: 'popins', sans-serif;
+}
+
+.card-actions{
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.card-actions .view-booking,
+.card-actions .edit-booking,
+.card-actions .cancel-booking{
+    padding: 5px 20px;
+    color: #fff;
+    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+    margin-bottom: 5px;
 }

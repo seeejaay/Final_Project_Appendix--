@@ -38,7 +38,7 @@ include '../assets/resources/editBooking.php';
                 <h1>View Booking</h1>
             </div>
         </div>
-        <div class="container mt-5">
+        <div class="container mt-5 conwrap">
             <h2 class="mb-4">Your Reservations</h2>
             <div class="table-responsive">
                 <?php
@@ -53,27 +53,44 @@ include '../assets/resources/editBooking.php';
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) : ?>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered rtb">
                         <tbody>
                             <?php while ($row = $result->fetch_assoc()) : ?>
                                 <tr data-transact-id="<?php echo $row['transact_id']; ?>" data-check-in-date="<?php echo $row['checkInDate']; ?>" data-check-out-date="<?php echo $row['checkOutDate']; ?>" data-num-days="<?php echo (strtotime($row['checkOutDate']) - strtotime($row['checkInDate'])) / 86400; ?>" data-room-type="<?php echo $row['roomtype']; ?>" data-payment-mode="<?php echo $row['transaction_type']; ?>" data-room-id="<?php echo $row['room_id']; ?>" data-price-per-night="<?php echo $row['pricePerNight']; ?>" data-num-of-nights="<?php echo $row['numOfNights']; ?>">
-                                    <td>
-                                        <?php echo $row['roomtype']; ?><br>
-                                        <?php echo $row['transact_id'];
-                                        $_SESSION['transact_id'] = $row['transact_id'];
-                                        ?>
+                                    <td class="stacked-cell">
+                                    <div class="card-title">
+                                        <span class="adjustable-font-size"><?php echo $row['roomtype']; ?></span><br>
+                                        <span class="adjustable-font-size"><?php echo $row['transact_id']; ?></span>
+                                        <?php $_SESSION['transact_id'] = $row['transact_id']; ?>
+                                    </div>
                                     </td>
-                                    <td>
-                                        <?php echo $row['checkInDate']; ?> - <?php echo $row['checkOutDate']; ?> of year 2024<br>
-                                        Booked by: <?php echo $row['bookedBy']; ?><br>
-                                        Room #: <?php echo $row['room_id']; ?><br>
-                                        Status: <?php echo $row['status']; ?>
+                                    <td class="stacked-cell">
+                                        <div class="card-text">
+                                            <?php 
+                                            $user_id = $_SESSION['id'];
+                                            $stmt= $conn->prepare("SELECT first_name,last_name FROM user_tb WHERE id = ?");
+                                            $stmt->bind_param("i", $user_id);
+                                            $stmt->execute();
+                                            $stmt->store_result();
+                                            $stmt->bind_result($first_name, $last_name);
+                                            $stmt->fetch();
+                                            $stmt->close();
+
+                                            $name = $first_name . " " . $last_name;
+
+                                            echo date('M d, Y', strtotime($row['checkInDate'])); ?> - <?php echo date('M d, Y', strtotime($row['checkOutDate'])); ?><br>
+                                            Booked by: <?php echo $name; ?><br>
+                                            Room #: <?php echo $row['room_id']; ?><br>
+                                            Status: <?php echo $row['status']; ?>
+                                        </div>
                                     </td>
-                                    <td>
-                                        <button class="btn btn-primary view-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#viewModal">View</button>
-                                        <button class="btn btn-success edit-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#editModal">Edit</button>
-                                        <button class="btn btn-danger cancel-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#cancelModal">Cancel Reservation</button>
-                                    </td>
+                                        <td class="stacked-cell">
+                                            <div class="card-actions" role="group">
+                                                <button class="btn btn-primary view-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#viewModal">View</button>
+                                                <button class="btn btn-success edit-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#editModal">Edit</button>
+                                                <button class="btn btn-danger cancel-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#cancelModal">Cancel Reservation</button>
+                                            </div>
+                                        </td>
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>
