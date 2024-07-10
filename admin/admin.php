@@ -30,56 +30,53 @@ include '../assets/resources/dbConfig.php';
 </head>
 
 <body>
-    <!-- Navbar FOR ALL-->
-    <aside class="main-sidebar sidebar-dark-primary elevation-9" style="background-color: #1c1610;">
-        <!-- Brand Logo -->
-        <a href="admin.php" class="brand-link" style="text-align: center">
-            <img src="../assets/images/logo_bg.png" style="width: 128px; height: auto; padding-bottom: 12px;"> <br>
-            <span class="brand-text font-weight-light">Timeless Elegance</span>
-        </a>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Sidebar Menu -->
-            <nav class="mt-4 custom-width">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"">
-                    <li class=" nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-solid fa-pen-to-square"></i>
-                        <p>Edit Transaction</p>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.php?page=view" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-receipt"></i>
-                            <p>View All Transaction</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-ban"></i>
-                            <p>Cancel Booking</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-sign-out-alt"></i>
-                            <p>Logout</p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+<?php include 'header3.php' ?>
+<div class="content-wrapper">
+    <section class="content">
+        <div>
+            <h2>WELCOME BACK, ADMIN!</h2>
         </div>
-    </aside>
-
-    <main class="container-wrapper">
-        <div class="top">
-            <div class="title">
-                <h1>Welcome back, Admin!</h1>
+        <div class="container-fluid">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Video</h3>
+                </div>
+                <form action="index.php?page=edit&id=<?php echo $video['id']; ?>" method="post">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" class="form-control" name="title" value="<?php echo htmlspecialchars($video['title']); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Director</label>
+                            <input type="text" class="form-control" name="director" value="<?php echo htmlspecialchars($video['director']); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Release Year</label>
+                            <input type="number" class="form-control" name="release_year" value="<?php echo htmlspecialchars($video['release_year']); ?>" min="1000" max="9999" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Casting</label>
+                            <input type="text" class="form-control" name="casting" value="<?php echo htmlspecialchars($video['casting']); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <input type="text" class="form-control" name="genre" value="<?php echo htmlspecialchars($video['genre']); ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" name="description" required><?php echo htmlspecialchars($video['description']); ?></textarea>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" name="submit" class="btn btn-info">Update Video</button>
+                        <button type="button" class="btn btn-default" onclick="window.location.href='index.php?page=view';">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </main>
-
+    </section>
+</div>
     <footer class="footer">
         <div class="container">
             <div class="row">
