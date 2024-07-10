@@ -59,7 +59,9 @@ include '../assets/resources/editBooking.php';
                                 <tr data-transact-id="<?php echo $row['transact_id']; ?>" data-check-in-date="<?php echo $row['checkInDate']; ?>" data-check-out-date="<?php echo $row['checkOutDate']; ?>" data-num-days="<?php echo (strtotime($row['checkOutDate']) - strtotime($row['checkInDate'])) / 86400; ?>" data-room-type="<?php echo $row['roomtype']; ?>" data-payment-mode="<?php echo $row['transaction_type']; ?>" data-room-id="<?php echo $row['room_id']; ?>" data-price-per-night="<?php echo $row['pricePerNight']; ?>" data-num-of-nights="<?php echo $row['numOfNights']; ?>">
                                     <td>
                                         <?php echo $row['roomtype']; ?><br>
-                                        <?php echo $row['transact_id']; ?>
+                                        <?php echo $row['transact_id'];
+                                        $_SESSION['transact_id'] = $row['transact_id'];
+                                        ?>
                                     </td>
                                     <td>
                                         <?php echo $row['checkInDate']; ?> - <?php echo $row['checkOutDate']; ?> of year 2024<br>
