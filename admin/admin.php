@@ -1,15 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true && !isset($_SESSION['admin']) || $_SESSION['admin'] !== true) {
     header('Location: ../index.php');
     exit;
 }
 
 include '../assets/resources/dbConfig.php';
-include '../assets/resources/getBooking.php';
-include '../assets/resources/cancelBooking.php';
-include '../assets/resources/editBooking.php';
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +27,7 @@ include '../assets/resources/editBooking.php';
 
 <body>
     <!-- Navbar FOR ALL-->
-    <?php include '../assets/resources/header2.php'; ?>
+    <?php include '../assets/resources/adminheader.php'; ?>
 
     <main class="container-wrapper">
         <div class="top">
