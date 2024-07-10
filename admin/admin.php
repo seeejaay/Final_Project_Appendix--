@@ -33,73 +33,33 @@ include '../assets/resources/dbConfig.php';
 <?php include 'header3.php' ?>
 <div class="content-wrapper">
     <section class="content">
-        <div>
-            <h2>WELCOME BACK, ADMIN!</h2>
-        </div>
         <div class="container-fluid">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">Edit Video</h3>
-                </div>
-                <form action="index.php?page=edit&id=<?php echo $video['id']; ?>" method="post">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" class="form-control" name="title" value="<?php echo htmlspecialchars($video['title']); ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Director</label>
-                            <input type="text" class="form-control" name="director" value="<?php echo htmlspecialchars($video['director']); ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Release Year</label>
-                            <input type="number" class="form-control" name="release_year" value="<?php echo htmlspecialchars($video['release_year']); ?>" min="1000" max="9999" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Casting</label>
-                            <input type="text" class="form-control" name="casting" value="<?php echo htmlspecialchars($video['casting']); ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Genre</label>
-                            <input type="text" class="form-control" name="genre" value="<?php echo htmlspecialchars($video['genre']); ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" name="description" required><?php echo htmlspecialchars($video['description']); ?></textarea>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-info">Update Video</button>
-                        <button type="button" class="btn btn-default" onclick="window.location.href='index.php?page=view';">Cancel</button>
-                    </div>
-                </form>
-            </div>
+            <?php
+                $page = $_GET['page'] ?? 'home'; // Default to home page if no specific page request
+                switch ($page) {
+                    case 'add':
+                        include 'add.php';
+                        break;
+                    case 'edit':
+                        include 'edit.php';
+                        break;
+                    case 'delete':
+                        include 'delete.php';
+                        break;
+                    case 'view':
+                        include 'viewAll_Trans.php';
+                        break;
+                    case 'view_single':
+                        include 'view_single.php';
+                        break;
+                    default:
+                        echo '<div class="alert alert-info">WELCOME BACK, ADMIN!</div>';
+                        break;
+                }
+            ?>
         </div>
     </section>
 </div>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="footer-logo" src="../assets/images/logo_bg.png" alt="Logo">
-                </div>
-                <div class="col-md-4">
-                    <h3>Contact Us</h3>
-                    <p>123 Main Street, City, Country</p>
-                    <p>Email: info@example.com</p>
-                    <p>Phone: +1 123 456 7890</p>
-                </div>
-                <div class="col-md-4">
-                    <h3>Follow Us</h3>
-                    <ul class="social-media">
-                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb5g6bRVt/vp5oVhBfiIsZnFjzSKX8vNbw5P1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
