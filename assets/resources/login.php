@@ -24,10 +24,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $db_username;
-
+                                $_SESSION['admin'] = false;
                                 if ($admin) {
+                                        $_SESSION['admin'] = true;
                                         echo json_encode(array("redirect" => "./admin/admin.php"));
                                 } else {
+                                        $_SESSION['admin'] = false;
                                         echo json_encode(array("redirect" => "index.php"));
                                 }
                         } else {
