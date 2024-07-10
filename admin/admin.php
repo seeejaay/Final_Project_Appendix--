@@ -18,8 +18,9 @@ include '../assets/resources/dbConfig.php';
     <title>Admin Page | Timeless Elegance</title>
 
     <link rel="stylesheet" href="../assets/CSS/header.css">
-    <link rel="stylesheet" href="../assets/CSS/viewBooking.css">
+    <link rel="stylesheet" href="../assets/CSS/admin.css">
     <link rel="stylesheet" href="../assets/CSS/footer.css">
+    <link rel="stylesheet" href="../assets/CSS/adminheader.css">
     <!-- AdminLTE CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2.0/dist/css/adminlte.min.css">
     <!-- Font Awesome Icons -->
@@ -40,13 +41,13 @@ include '../assets/resources/dbConfig.php';
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar Menu -->
-            <nav class="mt-4">
+            <nav class="mt-4 custom-width">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-solid fa-pen-to-square"></i>
-                            <p>Edit Transaction</p>
-                        </a>
+                    <li class=" nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-solid fa-pen-to-square"></i>
+                        <p>Edit Transaction</p>
+                    </a>
                     </li>
                     <li class="nav-item">
                         <a href="index.php?page=view" class="nav-link">
