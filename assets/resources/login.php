@@ -1,4 +1,5 @@
 <?php
+
 global $login_fail;
 $login_err = '';
 $signup_err = '';
@@ -16,9 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute();
                 $stmt->bind_result($id, $db_username, $db_password, $admin);
                 $login_fail = false;
-                $_SESSION["loggedin"] = false;
+
                 if ($stmt->fetch()) {
-                        if ($password === $db_password) { // In production, use password_verify($password, $db_password)
+                        if ($password === $db_password) {
+                                // In production, use password_verify($password, $db_password)
                                 $_SESSION["loggedin"] = true;
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $db_username;
@@ -26,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 if ($admin) {
                                         echo json_encode(array("redirect" => "./admin/admin.php"));
                                 } else {
-                                        echo json_encode(array("redirect" => "./client/booking.php"));
+                                        echo json_encode(array("redirect" => "index.php"));
                                 }
                         } else {
                                 $login_fail = true;

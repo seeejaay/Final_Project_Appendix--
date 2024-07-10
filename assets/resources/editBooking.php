@@ -1,8 +1,9 @@
 <?php
+session_start();
 include 'dbConfig.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $transactId = $_POST['transact_id'];
+    $roomId = $_SESSION['room_id'];
     $checkInDate = $_POST['checkin'];
     $checkOutDate = $_POST['checkout'];
 
@@ -13,15 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $stmt = $conn->prepare("UPDATE room_tb SET checkInDate = ?, checkOutDate = ? WHERE transact_id = ?");
-    $stmt->bind_param("ssi", $checkInDate, $checkOutDate, $transactId);
+    $stmt = $conn->prepare("UPDATE room_tb SET checkInDate = ?, checkOutDate = ? WHERE room_id = ?");
+    $stmt->bind_param("sss", $checkInDate, $checkOutDate, $roomId);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Error updating booking: ' . $conn->error]);
     }
-
-    $stmt->close();
 }
-?>

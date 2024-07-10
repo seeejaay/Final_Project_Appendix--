@@ -25,8 +25,8 @@ function genTransID($userId, $checkinDate, $roomType, $conn)
 
     // Generate parts of the transaction ID
     $firstLetters = strtoupper(substr($firstName, 0, 2));
-    $month = strtoupper(date('M', strtotime($checkinDate)));
-    $day = date('d', strtotime($checkinDate));
+    $month = strtoupper(date('M'));
+    $day = date('d');
     $numericMonthYear = date('my', strtotime($checkinDate));
 
     // Room type code
