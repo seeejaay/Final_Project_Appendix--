@@ -44,7 +44,7 @@ include '../assets/resources/editBooking.php';
                 <?php
                 $user_id = $_SESSION['id'];
                 // Fetch booking data from the database
-                $sql = "SELECT transaction_tb.*, room_tb.roomtype, room_tb.checkInDate, room_tb.checkOutDate, room_tb.bookedBy, room_tb.room_id,
+                $sql = "SELECT transaction_tb.*, room_tb.roomtype, room_tb.checkInDate, room_tb.checkOutDate, room_tb.bookedBy, room_tb.room_id, room_tb.numOfNights, room_tb.pricePerNight,
                     CASE WHEN transaction_tb.cancelled = 0 THEN 'Processing' ELSE 'Cancelled' END as status
                     FROM transaction_tb
                     JOIN room_tb ON transaction_tb.room_id = room_tb.room_id
@@ -56,7 +56,7 @@ include '../assets/resources/editBooking.php';
                     <table class="table table-bordered">
                         <tbody>
                             <?php while ($row = $result->fetch_assoc()) : ?>
-                                <tr data-transact-id="<?php echo $row['transact_id']; ?>" data-check-in-date="<?php echo $row['checkInDate']; ?>" data-check-out-date="<?php echo $row['checkOutDate']; ?>" data-num-days="<?php echo (strtotime($row['checkOutDate']) - strtotime($row['checkInDate'])) / 86400; ?>" data-room-type="<?php echo $row['roomtype']; ?>" data-payment-mode="<?php echo $row['transaction_type']; ?>" data-room-id="<?php echo $row['room_id']; ?>">
+                                <tr data-transact-id="<?php echo $row['transact_id']; ?>" data-check-in-date="<?php echo $row['checkInDate']; ?>" data-check-out-date="<?php echo $row['checkOutDate']; ?>" data-num-days="<?php echo (strtotime($row['checkOutDate']) - strtotime($row['checkInDate'])) / 86400; ?>" data-room-type="<?php echo $row['roomtype']; ?>" data-payment-mode="<?php echo $row['transaction_type']; ?>" data-room-id="<?php echo $row['room_id']; ?>" data-price-per-night="<?php echo $row['pricePerNight']; ?>" data-num-of-nights="<?php echo $row['numOfNights']; ?>">
                                     <td>
                                         <?php echo $row['roomtype']; ?><br>
                                         <?php echo $row['transact_id'];
@@ -96,7 +96,7 @@ include '../assets/resources/editBooking.php';
                             <p>Number of Days: <span id="viewNumDays"></span></p>
                             <p>Check-In Time: 10:00 AM</p>
                             <p>Check-Out Time: 10:00 AM</p>
-                            <p>Room #: <span id="viewRoomID"></span></p>
+                            <p>Room Number: <span id="viewRoomID"></span></p>
                             <p>Room Type: <span id="viewRoomType"></span></p>
                             <p>Mode of Payment: <span id="viewPaymentMode"></span></p>
                             <button type="button" class="btn btn-secondary" onclick="window.location.href='viewBooking.php'">Cancel</button>
@@ -143,6 +143,11 @@ include '../assets/resources/editBooking.php';
                             <h5 class="modal-title" id="cancelModalLabel">Cancel Booking</h5>
                         </div>
                         <div class="modal-body">
+                            <p>Check-In Date: <span id="cancelCheckInDate"></span></p>
+                            <p>Check-Out Date: <span id="cancelCheckOutDate"></span></p>
+                            <p>Room Number: <span id="cancelRoomID"></span></p>
+                            <p>Cancellation Fee: <span id="cancelFeeAmount"></span></p>
+                            <p>Refund: <span id="cancelRefundAmount"></span></p>
                             <p>Are you sure you want to cancel this booking?</p>
                             <form id="cancelForm" method="post" action="../assets/resources/cancelBooking.php">
                                 <input type="hidden" id="cancelTransactId" name="transact_id">
