@@ -8,6 +8,7 @@
     --browndark: #41391f;
     --offwhite: #f8f6e7;
     animation: opacity 500ms ease-in-out;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .container-wrapper{

@@ -26,31 +26,7 @@ include './assets/resources/login.php';
 
 <body>
         <!-- Navbar FOR ALL-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
-                <div class="navbar-brand" href="#">
-                        <a href="index.php"><img class="img-size" src="./assets/images/logo_bg.png" alt=""></a>
-                </div>
-                <button class="navbar-toggler toggleNav" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="fas fa-bars"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
-                                <li class="nav-item active">
-                                        <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="about.php">About</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">Services</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">Contact</a>
-                                </li>
-                        </ul>
-                </div>
-        </nav>
+        <?php include './assets/resources/header.php'; ?>
 
         <main class="container-wrapper">
                 <div class="top">
@@ -122,7 +98,17 @@ include './assets/resources/login.php';
                 $('#bookNowBtn').click(function() {
                         // Check if user is logged in
                         if (<?php echo isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true ? 'true' : 'false'; ?>) {
-                                window.location.href = 'booking.php'; // Redirect to booking.php
+                                window.location.href = './client/booking.php'; // Redirect to booking.php
+                        } else {
+                                $('.js-signin-modal-trigger [data-signin="login"]').click(); // Open login modal if not logged in
+                        }
+                });
+
+
+                $('#bookingBtn').click(function() {
+                        // Check if user is logged in
+                        if (<?php echo isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true ? 'true' : 'false'; ?>) {
+                                window.location.href = './client/booking.php'; // Redirect to booking.php
                         } else {
                                 $('.js-signin-modal-trigger [data-signin="login"]').click(); // Open login modal if not logged in
                         }

@@ -1,0 +1,22 @@
+.custom-width{
+  
+    padding: 10px 0 !important;
+}
+ul{
+    width: 100% !important;
+    li{
+        width: 100% !important;
+        padding: 0 10px !important;
+       
+}
+
+.nav-link{
+  
+    padding: 20px 0 !important;
+    margin: 0 !important;
+    color: #fff !important;
+    font-size: 1.2rem !important;
+    text-align: left !important;
+   
+}
+}
