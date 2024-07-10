@@ -18,5 +18,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Close the statement
     $stmt->close();
 
-    header('Location: ../client/viewBooking.php');
+    header('Location: ../../client/viewBooking.php');
 }
