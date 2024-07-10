@@ -19,7 +19,7 @@
                 <a class="nav-link js-signin-modal-trigger btn-nav" id="bookingBtn" data-signin="login">Booking</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" href="./contact.php">Contact</a>
             </li>
         </ul>
     </div>
