@@ -24,6 +24,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../assets/resources/logout.php" onclick="return confirmLogout()">Logout</a>
+            </li>
         </ul>
     </div>
 </nav>
+
+<script>
+    function confirmLogout() {
+        return confirm("Are you sure you want to logout?");
+    }
+</script>
