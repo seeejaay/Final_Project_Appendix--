@@ -206,10 +206,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             function resetDatesIfCancelled() {
                 const cancelled = $('#cancelled').val();
                 if (cancelled == 1) {
-                    $('#checkindate').val('');
-                    $('#checkoutdate').val('');
-                    $('#number_of_days').val('');
-                    $('#transaction_amount').val('');
+                    $('#checkindate').val(null);
+                    $('#checkoutdate').val(null);
+                    $('#number_of_days').val(null);
+                    $('#transaction_amount').val(null);
                 }
             }
 
