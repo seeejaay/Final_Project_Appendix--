@@ -138,8 +138,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Save Changes" class="btn btn-primary">
+                                <button value="Cancel" class="btn btn-primary"><a href="admin.php" style="color:#fff; text-decoration:none;">Cancel</a></button>
+
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
