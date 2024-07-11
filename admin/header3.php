@@ -10,15 +10,21 @@
         <!-- Sidebar Menu -->
         <nav class="mt-4 custom-width">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"">
-                    <li class=" nav-item">
-                <a href="admin.php?page=viewAll_Trans" class="nav-link">
-                    <i class="nav-icon fas fa-solid fa-receipt"></i>
-                    <p>View All Transaction</p>
+                <li class=" nav-item">
+                <a href="../index.php   " class="nav-link">
+                    <i class="nav-icon fas fa-solid fa-home"></i>
+                    <p>Home</p>
                 </a>
+                </li>
+                <li class=" nav-item">
+                    <a href="admin.php?page=viewAll_Trans" class="nav-link">
+                        <i class="nav-icon fas fa-solid fa-receipt"></i>
+                        <p>View All Transaction</p>
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="../assets/resources/logout.php" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </a>
