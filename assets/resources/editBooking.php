@@ -5,8 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $roomId = $_POST['room_id'];
     $checkInDate = $_POST['checkin'];
     $checkOutDate = $_POST['checkout'];
+    $transact_id = $_POST['transact_id'];
 
-    // Add validation: Check-in date must be onwards from the current date
+    // Add validation: Check-in date must be onwards the current date
     $today = new DateTime();
     $checkInDateTime = new DateTime($checkInDate);
 
@@ -19,46 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $checkOutDateTime = new DateTime($checkOutDate);
     $numDays = $checkOutDateTime->diff($checkInDateTime)->days;
 
-    // Check if the booking is cancelled before allowing updates
-    $stmt = $conn->prepare('SELECT cancelled FROM transaction_tb WHERE room_id = ?');
-    $stmt->bind_param('i', $roomId);
-    $stmt->execute();
-    $stmt->store_result();
+    // Assume you need to update based on transact_id
+    $stmt = $conn->prepare("UPDATE room_tb SET checkInDate = ?, checkOutDate = ?, numOfNights = ? WHERE room_id = ? AND transact_id = ?");
+    $stmt->bind_param("ssiss", $checkInDate, $checkOutDate, $numDays, $roomId, $transact_id);
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($cancelled);
-        $stmt->fetch();
-
-        if ($cancelled == 1) {
-            // Booking is cancelled, prevent editing and notify the user
-            echo '<script>';
-            echo 'alert("Booking has been cancelled. Please make a new booking.");';
-            echo 'window.location.reload();';
-            echo '</script>';
-
-            exit;
-        } else {
-            // Booking is active, proceed with updating room details
-            $stmt = $conn->prepare("UPDATE room_tb SET checkInDate = ?, checkOutDate = ?, numOfNights = ? WHERE room_id = ?");
-            $stmt->bind_param("ssii", $checkInDate, $checkOutDate, $numDays, $roomId);
-
-            if ($stmt->execute()) {
-                echo '<script>';
-                echo 'alert("Booking details updated successfully.");';
-                echo '</script>';
-                header('Location: ../client/viewBooking.php');
-                exit;
-            } else {
-                echo '<script>';
-                echo 'alert("Failed to update booking details.");';
-                echo '</script>';
-                header('Location: ../client/viewBooking.php');
-                exit;
-            }
-        }
+    if ($stmt->execute()) {
+        echo json_encode(['success' => true, 'message' => 'Booking updated successfully.']);
     } else {
-        // Handle case where no booking found for the given room ID
-        echo json_encode(['success' => false, 'message' => 'Booking not found for the specified room ID.']);
-        exit;
+        echo json_encode(['success' => false, 'message' => 'Failed to update booking.']);
     }
+
+    $stmt->close();
+    $conn->close();
 }

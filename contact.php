@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,10 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
                 <div class="navbar-brand" href="#">
                         <a href="index.php"><img class="img-size" src="./assets/images/logo_bg.png" alt=""></a>
                 </div>
@@ -42,43 +44,43 @@
 
         </nav>
         <div class="container-wrapper">
-	        <div class="contact">
-            <div class="row-head">
-			    <h1>contact us</h1>
-	        </div>
-	        <div class="row">
-			    <h4 style="text-align:center">We'd love to hear from you!</h4>
-	        </div>
-            <div class="row input-container">
-                    <div class="col-xs-12">
-                        <div class="styled-input wide">
-                            <input type="text" required />
-                            <label>Name</label> 
+                <div class="contact">
+                        <div class="row-head">
+                                <h1>contact us</h1>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="styled-input">
-                            <input type="text" required />
-                            <label>Email</label> 
+                        <div class="row">
+                                <h4 style="text-align:center">We'd love to hear from you!</h4>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="styled-input" style="float:right;">
-                            <input type="text" required />
-                            <label>Phone Number</label> 
+                        <div class="row input-container">
+                                <div class="col-xs-12">
+                                        <div class="styled-input wide">
+                                                <input type="text" required />
+                                                <label>Name</label>
+                                        </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                        <div class="styled-input">
+                                                <input type="text" required />
+                                                <label>Email</label>
+                                        </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                        <div class="styled-input" style="float:right;">
+                                                <input type="text" required />
+                                                <label>Phone Number</label>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12">
+                                        <div class="styled-input wide">
+                                                <textarea required></textarea>
+                                                <label>Message</label>
+                                        </div>
+                                </div>
+                                <div class="col-xs-12">
+                                        <div class="btn-lrg btn-custom">Send Message</div>
+                                </div>
                         </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="styled-input wide">
-                            <textarea required></textarea>
-                            <label>Message</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-12">
-                        <div class="btn-lrg btn-custom">Send Message</div>
-                    </div>
-            </div>
-            </div>
+                </div>
         </div>
 
 
@@ -87,6 +89,9 @@
                         <div class="row">
                                 <div class="col-md-4">
                                         <img class="footer-logo" src="./assets/images/logo_bg.png" alt="Logo">
+                                        <ul>
+                                                <li style="list-style:none; text-decoration:none;"><a href="./admin/admin.php">ADMIN</a></li>
+                                        </ul>
                                 </div>
                                 <div class="col-md-4">
                                         <h3>Contact Us</h3>

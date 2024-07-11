@@ -156,6 +156,9 @@
             <div class="row">
                 <div class="col-md-4">
                     <img class="footer-logo" src="../assets/images/logo_bg.png" alt="Logo">
+                    <ul>
+                        <li style="list-style:none; text-decoration:none;"><a href="../admin/admin.php">ADMIN</a></li>
+                    </ul>
                 </div>
                 <div class="col-md-4">
                     <h3>Contact Us</h3>

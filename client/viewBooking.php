@@ -87,7 +87,7 @@ include '../assets/resources/editBooking.php';
                                     <td class="stacked-cell">
                                         <div class="card-actions" role="group">
                                             <button class="btn btn-primary view-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#viewModal">View</button>
-                                            <button class="btn btn-success edit-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#editModal">Edit</button>
+                                            <!-- <button class="btn btn-success edit-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#editModal">Edit</button> -->
                                             <button class="btn btn-danger cancel-booking" data-room-id="<?php echo $row['room_id']; ?>" data-toggle="modal" data-target="#cancelModal">Cancel Reservation</button>
                                         </div>
                                     </td>
@@ -182,6 +182,9 @@ include '../assets/resources/editBooking.php';
             <div class="row">
                 <div class="col-md-4">
                     <img class="footer-logo" src="../assets/images/logo_bg.png" alt="Logo">
+                    <ul>
+                        <li style="list-style:none; text-decoration:none;"><a href="../admin/admin.php">ADMIN</a></li>
+                    </ul>
                 </div>
                 <div class="col-md-4">
                     <h3>Contact Us</h3>
