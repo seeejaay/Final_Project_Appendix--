@@ -101,6 +101,7 @@ $conn->close();
                                             echo "<td>$" . htmlspecialchars($transaction['pricepernight']) . "</td>";
                                             echo "<td>" . htmlspecialchars($transaction['numOfNights']) . "</td>";
                                             echo "<td>" . ($transaction['cancelled'] ? 'Yes' : 'No') . "</td>";
+                                            $_SESSION['transact_id'] = $transaction['transact_id'];
                                             echo "<td>
                                                 <a href='admin.php?page=edit&id={$transaction['transact_id']}' class='btn btn-info'>Edit</a>
                                                 </td>";

@@ -31,18 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $checkindate = $_POST['checkindate'];
     $checkoutdate = $_POST['checkoutdate'];
     $cancelled = $_POST['cancelled'];
-    $transaction_amount = $_POST['transaction_amount'];
+    $transact_amount = $_POST['transaction_amount'];
     $room_id = $transaction['room_id'];
     $transact_id = $_POST['transact_id'];
-
-    $stmt = $conn->prepare('UPDATE room_tb SET checkInDate = ?, checkOutDate = ? WHERE room_id = ?');
-    $stmt->bind_param('ssi', $checkindate, $checkoutdate, $room_id);
+    $numNights = $_POST['number_of_days'];
+    $stmt = $conn->prepare('UPDATE room_tb SET checkInDate = ?, checkOutDate = ?, numOfNights = ? WHERE room_id = ?');
+    $stmt->bind_param('ssii', $checkindate, $checkoutdate, $numNights, $room_id);
     $stmt->execute();
 
 
 
     $stmt = $conn->prepare('UPDATE transaction_tb SET transaction_amount = ?, cancelled = ? WHERE transact_id = ?');
-    $stmt->bind_param('dii', $transaction_amount, $cancelled, $transact_id);
+    $stmt->bind_param('dis', $transact_amount, $cancelled, $transact_id);
     $stmt->execute();
     $stmt->close();
 
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <!-- Form inputs -->
                             <div class="form-group">
                                 <label for="transact_id">Transaction ID:</label>
-                                <input type="text" name="transact_id" id="transact_id" value="<?php echo $transaction['transact_id'] ?>" readonly class="form-control">
+                                <input type="text" name="transact_id" id="transact_id" value="<?php echo $transact_id ?>" readonly class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="user_id">User ID:</label>
@@ -138,11 +138,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Save Changes" class="btn btn-primary">
-                                <button value="Cancel" class="btn btn-primary"><a href="admin.php" style="color:#fff; text-decoration:none;">Cancel</a></button>
-
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -172,8 +169,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     var timeDifference = checkoutDate.getTime() - checkinDate.getTime();
                     var daysDifference = timeDifference / (1000 * 3600 * 24);
                     $('#number_of_days').val(daysDifference);
+                    <?php
+
+                    $_SESSION['numofNights'] = "<script>document.write(daysDifference)</script>";
+                    ?>
                 } else {
                     $('#number_of_days').val('');
+                    <?php $numofNights = ""; ?>
                 }
                 calculatePrice();
             }
@@ -209,10 +211,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             function resetDatesIfCancelled() {
                 const cancelled = $('#cancelled').val();
                 if (cancelled == 1) {
-                    $('#checkindate').val(null);
-                    $('#checkoutdate').val(null);
-                    $('#number_of_days').val(null);
-                    $('#transaction_amount').val(null);
+                    $('#checkindate').val('');
+                    $('#checkoutdate').val('');
+                    $('#number_of_days').val('');
+                    $('#transaction_amount').val('');
                 }
             }
 
