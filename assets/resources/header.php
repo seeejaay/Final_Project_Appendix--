@@ -16,7 +16,7 @@
                 <a class="nav-link" href="about.php">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-signin-modal-trigger btn-nav" id="bookingBtn" data-signin="login">Booking</a>
+                <a class="nav-link js-signin-modal-trigger btn-nav" id="bookingBtn" data-signin="login" href="../client/booking.php">Booking</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./contact.php">Contact</a>

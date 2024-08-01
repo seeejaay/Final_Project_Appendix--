@@ -189,6 +189,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $('#signup-form').submit(function(e) {
                         e.preventDefault(); // Prevent form submission
                         var formData = $(this).serialize(); // Serialize form data
+                        
+                        
                         $.ajax({
                                 type: 'POST',
                                 url: '<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>',
